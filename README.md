@@ -2,6 +2,8 @@
 
 # PPP
 
+<img src="./public/logo.svg" alt="logo">
+
 MBTI P인 프로그래머를 위한 플래너
 
 ![React](https://img.shields.io/badge/React-ffffff?style=flat-square&logo=react&logoColor=ffffff&labelColor=61dafb&color=61dafb)
