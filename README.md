@@ -1,28 +1,29 @@
 <div align="center">
 
-# 프로젝트 이름
+# PPP
 
-간단한 설명
+MBTI P인 프로그래머를 위한 플래너
 
-사용 기술 뱃지
+![React](https://img.shields.io/badge/React-ffffff?style=flat-square&logo=react&logoColor=ffffff&labelColor=61dafb&color=61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-ffffff?style=flat-square&logo=typescript&logoColor=ffffff&labelColor=3178c6&color=3178c6)
 
 </div>
 
-> **프로그래머스 데브코스: 클라우드 기반 프론트엔드 엔지니어링** 수업시간에 진행한 학습 예제입니다.
+> **프로그래머스 데브코스: 클라우드 기반 프론트엔드 엔지니어링**에서 진행한 두 번째 프로젝트입니다.
 
 ## 💡 주요 기능
 
-### 기능 1
+### 일정 관리
 
-- 설명 1
-- 설명 2
+### Todo List
 
-### 기능 2
+### 최신 IT 정보
 
-- 설명 1
-- 설명 2
+- 사람인 채용 공고
+- dev.to 블로그 포스팅
+- GitHub Repository
 
 ## ▶️ 실행 방법
 
-1. 방법 1
-2. 방법 2
+1. `npm i`를 입력해 필요한 패키지를 설치합니다.
+2. `npm run dev`를 입력해 실행합니다.
