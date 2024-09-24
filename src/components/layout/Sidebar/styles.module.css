@@ -1,0 +1,6 @@
+.sidebar {
+  @apply h-screen w-[300px] static;
+  @apply px-4 py-8;
+  @apply flex flex-col gap-6;
+  @apply bg-brand-white;
+}
