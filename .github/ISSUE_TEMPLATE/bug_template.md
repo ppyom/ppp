@@ -1,7 +1,7 @@
 ---
 name: 버그 템플릿
 about: 발생한 버그에 대한 템플릿
-title: "[Bug🐛]"
+title: ""
 labels: "🐛Bug"
 assignees: ""
 ---
