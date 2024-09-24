@@ -3,4 +3,21 @@
   @apply px-4 py-8;
   @apply flex flex-col gap-6;
   @apply bg-brand-white;
+  @apply duration-300;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    @apply w-24;
+  }
+}
+
+@media (max-width: 500px) {
+  .sidebar {
+    @apply w-[300px];
+    @apply fixed top-0 -right-full;
+  }
+  .sidebar.active {
+    @apply right-0;
+  }
 }

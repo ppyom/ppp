@@ -18,3 +18,21 @@
 .copyright {
   @apply text-xs;
 }
+
+@media (max-width: 768px) {
+  .info {
+    @apply flex-col text-3xl;
+  }
+  .copyright {
+    @apply hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .info {
+    @apply flex-row text-5xl;
+  }
+  .copyright {
+    @apply block;
+  }
+}

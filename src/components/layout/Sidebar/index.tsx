@@ -5,7 +5,8 @@ import styles from './styles.module.css';
 
 const Sidebar = () => {
   return (
-    <div className={styles.sidebar}>
+    // TODO 모바일에서 Sidebar 열리는 기능 구현 필요
+    <div className={`${styles.sidebar} ${false ? styles.active : ''}`}>
       <Header />
       <Navbar />
       <Footer />

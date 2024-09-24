@@ -13,3 +13,21 @@
 .item.active {
   @apply bg-brand-light/30;
 }
+
+@media (max-width: 768px) {
+  .item {
+    @apply justify-center;
+  }
+  .item p {
+    @apply hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .item {
+    @apply justify-start;
+  }
+  .item p {
+    @apply block;
+  }
+}
