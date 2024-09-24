@@ -4,19 +4,6 @@
 
 .close {
   @apply hidden;
-  @apply text-xl text-neutral-500;
-}
-.close line {
-  @apply duration-300;
-}
-.close:hover line:nth-of-type(1) {
-  @apply stroke-brand-light;
-}
-.close:hover line:nth-of-type(2) {
-  @apply stroke-brand-default;
-}
-.close:hover line:nth-of-type(3) {
-  @apply stroke-brand-dark;
 }
 
 @media (max-width: 500px) {
