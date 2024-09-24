@@ -3,11 +3,15 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import styles from './styles.module.css';
 
-const Sidebar = () => {
+interface Props {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const Sidebar = ({ isOpen, close }: Props) => {
   return (
-    // TODO 모바일에서 Sidebar 열리는 기능 구현 필요
-    <div className={`${styles.sidebar} ${false ? styles.active : ''}`}>
-      <Header />
+    <div className={`${styles.sidebar} ${isOpen ? styles.active : ''}`}>
+      <Header close={close} />
       <Navbar />
       <Footer />
     </div>
