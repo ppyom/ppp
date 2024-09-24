@@ -3,7 +3,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import styles from './styles.module.css';
 
-const Index = () => {
+const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <Header />
@@ -13,4 +13,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Sidebar;
