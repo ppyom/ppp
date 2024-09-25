@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import classNames from '@/utils/classNames.ts';
 import styles from './styles.module.css';
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 
 const Sidebar = ({ isOpen, close }: Props) => {
   return (
-    <div className={`${styles.sidebar} ${isOpen ? styles.active : ''}`}>
+    <div className={classNames(styles.sidebar, isOpen && styles.active)}>
       <Header close={close} />
       <Navbar />
       <Footer />

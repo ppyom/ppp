@@ -4,6 +4,7 @@ import {
   FaExclamationTriangle,
   FaQuestionCircle,
 } from 'react-icons/fa';
+import classNames from '@/utils/classNames.ts';
 import type * as ToastType from '@/types/toast.ts';
 import styles from './styles.module.css';
 
@@ -29,7 +30,7 @@ const Toast = ({ id, type, message, duration }: Props) => {
   return (
     <div id={`t_${id}`} className={styles.toast}>
       {type && (
-        <span className={`${styles.icon} ${styles[type]}`}>
+        <span className={classNames(styles.icon, styles[type])}>
           {type === 'success' ? (
             <FaCheckSquare />
           ) : type === 'error' ? (

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from '@/utils/classNames.ts';
 import type * as ModalType from '@/types/modal.ts';
 
 interface Props extends ModalType.Modal {
@@ -15,7 +16,7 @@ const Modal = ({ id, children, className = '', onBgClick }: Props) => {
   };
   return (
     <div id={`m_${id}`} className={'modal--bg'} onClick={handleBgClick}>
-      <div className={`modal ${className}`}>{children}</div>
+      <div className={classNames('modal', className)}>{children}</div>
     </div>
   );
 };
