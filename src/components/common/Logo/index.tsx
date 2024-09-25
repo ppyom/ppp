@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
+
 const Logo = () => {
   return (
-    <a href="#">
-      {/* TODO router 추가한 다음 Link로 수정 필요 */}
+    <Link to="/">
       <img src="/logo.svg" alt="logo" />
-    </a>
+    </Link>
   );
 };
 

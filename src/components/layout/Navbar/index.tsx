@@ -1,29 +1,36 @@
+import { Link, useLocation } from 'react-router-dom';
 import { FiCalendar, FiCheckSquare } from 'react-icons/fi';
 import { IoTelescopeOutline } from 'react-icons/io5';
 import styles from './styles.module.css';
 
 const Navbar = () => {
+  const { pathname } = useLocation();
   return (
     <nav className={styles.nav}>
-      {/* TODO router 추가한 다음 Link로 수정 필요 */}
-      <a href="#">
-        <div className={`${styles.item} ${true ? styles.active : ''}`}>
+      <Link to="/">
+        <div
+          className={`${styles.item} ${pathname === '/' ? styles.active : ''}`}
+        >
           <FiCalendar />
           <p>일정 관리</p>
         </div>
-      </a>
-      <a href="#">
-        <div className={`${styles.item} ${false ? styles.active : ''}`}>
+      </Link>
+      <Link to="/todo">
+        <div
+          className={`${styles.item} ${pathname === '/todo' ? styles.active : ''}`}
+        >
           <FiCheckSquare />
           <p>할 일</p>
         </div>
-      </a>
-      <a href="#">
-        <div className={`${styles.item} ${false ? styles.active : ''}`}>
+      </Link>
+      <Link to="news">
+        <div
+          className={`${styles.item} ${pathname === '/news' ? styles.active : ''}`}
+        >
           <IoTelescopeOutline />
           <p>새로운 뉴스</p>
         </div>
-      </a>
+      </Link>
     </nav>
   );
 };
