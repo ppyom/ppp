@@ -1,6 +1,6 @@
-import Header from '../Header';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Header from '@/components/layout/Header';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import styles from './styles.module.css';
 
 interface Props {

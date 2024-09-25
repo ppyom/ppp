@@ -1,5 +1,5 @@
-import Logo from '../../common/Logo';
-import MenuButton from '../../common/MenuButton';
+import Logo from '@/components/common/Logo';
+import MenuButton from '@/components/common/MenuButton';
 import styles from './styles.module.css';
 
 interface Props {

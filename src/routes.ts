@@ -1,8 +1,8 @@
 import { FiCalendar, FiCheckSquare } from 'react-icons/fi';
 import { IoTelescopeOutline } from 'react-icons/io5';
-import SchedulePage from './pages/SchedulePage';
-import TodoPage from './pages/TodoPage';
-import NewsPage from './pages/NewsPage';
+import SchedulePage from '@/pages/SchedulePage';
+import TodoPage from '@/pages/TodoPage';
+import NewsPage from '@/pages/NewsPage';
 
 const routes = [
   {
