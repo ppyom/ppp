@@ -1,0 +1,16 @@
+.header {
+  @apply hidden;
+  @apply relative;
+  @apply justify-center items-center;
+  @apply py-8 bg-brand-white shadow-lg;
+}
+
+.open {
+  @apply absolute right-4;
+}
+
+@media (max-width: 500px) {
+  .header {
+    @apply flex;
+  }
+}

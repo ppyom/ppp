@@ -1,0 +1,38 @@
+.footer {
+  @apply flex flex-col justify-center items-center gap-4;
+  @apply border-t-[1px] border-brand-default/30 pt-4;
+  @apply text-neutral-700;
+}
+
+.info {
+  @apply flex gap-4;
+  @apply text-5xl;
+}
+.info > * {
+  @apply duration-300;
+}
+.info > *:hover {
+  @apply text-brand-default;
+}
+
+.copyright {
+  @apply text-xs;
+}
+
+@media (max-width: 768px) {
+  .info {
+    @apply flex-col text-3xl;
+  }
+  .copyright {
+    @apply hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .info {
+    @apply flex-row text-5xl;
+  }
+  .copyright {
+    @apply block;
+  }
+}

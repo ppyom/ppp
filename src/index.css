@@ -14,3 +14,16 @@
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-size: 16px;
 }
+
+#root {
+  @apply flex;
+}
+main {
+  @apply flex-1;
+}
+
+@media (max-width: 500px) {
+  #root {
+    @apply block;
+  }
+}

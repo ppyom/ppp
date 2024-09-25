@@ -1,0 +1,33 @@
+.nav {
+  @apply flex-1;
+}
+
+.item {
+  @apply flex items-center gap-3;
+  @apply px-4 py-3 text-lg rounded-lg;
+  @apply duration-300;
+}
+.item:hover {
+  @apply bg-brand-light/10;
+}
+.item.active {
+  @apply bg-brand-light/30;
+}
+
+@media (max-width: 768px) {
+  .item {
+    @apply justify-center;
+  }
+  .item p {
+    @apply hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .item {
+    @apply justify-start;
+  }
+  .item p {
+    @apply block;
+  }
+}
