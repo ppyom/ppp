@@ -22,6 +22,23 @@ main {
   @apply flex-1;
 }
 
+/* Modal */
+.modal--bg {
+  @apply opacity-0;
+  @apply fixed left-0 top-0;
+  @apply size-full;
+  @apply flex justify-center items-center;
+  @apply bg-base-black/10 backdrop-blur;
+  @apply duration-300;
+}
+.modal--bg.active {
+  @apply opacity-100;
+}
+.modal {
+  @apply max-w-[500px] w-full p-4;
+  @apply bg-white rounded-xl;
+}
+
 @media (max-width: 500px) {
   #root {
     @apply block;

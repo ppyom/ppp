@@ -1,0 +1,21 @@
+.button {
+  @apply border-[1px] border-neutral-300 rounded-lg bg-base-white;
+  @apply block p-2;
+  @apply duration-300;
+}
+.button.icon {
+  @apply p-1 text-lg border-0;
+}
+
+.button:hover {
+  @apply bg-brand-default/30;
+}
+.button.active {
+  @apply bg-brand-default text-white;
+}
+.button.active:hover {
+  @apply bg-brand-default/80;
+}
+.button:disabled {
+  @apply pointer-events-none opacity-50 bg-neutral-200;
+}

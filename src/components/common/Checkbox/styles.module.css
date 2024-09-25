@@ -1,0 +1,16 @@
+.checkbox {
+  @apply flex items-center gap-2;
+}
+.check {
+  @apply flex items-center justify-center text-white;
+  @apply w-4 h-4;
+  @apply border-2 border-service-success rounded;
+  @apply bg-transparent;
+}
+.checkbox:hover .check {
+  @apply bg-service-success/50;
+  @apply border-service-success/10;
+}
+.check.checked {
+  @apply bg-service-success;
+}

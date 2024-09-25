@@ -1,0 +1,19 @@
+.confirm[class^="modal"] {
+  @apply py-8;
+}
+.content,
+.footer {
+  @apply flex justify-center items-center;
+}
+.content {
+  @apply gap-2 pb-6;
+}
+.icon {
+  @apply text-service-error;
+}
+.footer {
+  @apply gap-4;
+}
+.footer > button {
+  @apply max-w-24 flex-1;
+}
