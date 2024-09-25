@@ -13,6 +13,9 @@
 .button.active {
   @apply bg-brand-default text-white;
 }
+.button.active:hover {
+  @apply bg-brand-default/80;
+}
 .button:disabled {
   @apply pointer-events-none opacity-50 bg-neutral-200;
 }
