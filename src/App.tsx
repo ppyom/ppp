@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ModalProvider } from '@/context/ModalContext.tsx';
 import { ToastProvider } from '@/context/ToastContext.tsx';
@@ -8,11 +8,25 @@ import { routes } from '@/routes.ts';
 
 function App() {
   const [openSidebar, setOpenSidebar] = useState(false);
+
+  const sidebarOpen = () => setOpenSidebar(true);
+  const sidebarClose = () => setOpenSidebar(false);
+  const handleSidebarClose = ({ target }: WindowEventMap['resize']) => {
+    if (target instanceof Window) {
+      target.innerWidth > 800 && sidebarClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleSidebarClose);
+    return () => window.removeEventListener('resize', handleSidebarClose);
+  }, []);
+
   return (
     <ModalProvider>
       <ToastProvider>
-        <MobileHeader open={() => setOpenSidebar(true)} />
-        <Sidebar isOpen={openSidebar} close={() => setOpenSidebar(false)} />
+        <MobileHeader open={sidebarOpen} />
+        <Sidebar isOpen={openSidebar} close={sidebarClose} />
         <Routes>
           {routes.map(({ path, PageElement }) => (
             <Route
