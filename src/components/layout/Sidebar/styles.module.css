@@ -15,7 +15,7 @@
 @media (max-width: 500px) {
   .sidebar {
     @apply w-[300px];
-    @apply fixed top-0 -right-full;
+    @apply fixed top-0 -right-[300px];
   }
   .sidebar.active {
     @apply right-0;
