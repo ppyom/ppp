@@ -16,7 +16,7 @@
 }
 
 #root {
-  @apply flex;
+  @apply flex h-screen;
 }
 main {
   @apply flex-1;
@@ -41,6 +41,6 @@ main {
 
 @media (max-width: 500px) {
   #root {
-    @apply block;
+    @apply flex-col;
   }
 }
