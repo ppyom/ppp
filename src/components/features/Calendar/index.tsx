@@ -6,6 +6,8 @@ import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { EventChangeArg, EventClickArg, EventInput } from '@fullcalendar/core';
 import classNames from '@/utils/classNames.ts';
 import CalendarHeader from '@/components/features/CalendarHeader';
+import ScheduleEditModal from 'components/features/ScheduleEditModal';
+import useModal from '@/hooks/useModal.ts';
 import {
   dateFormatter,
   datetimeFormatter,
@@ -15,6 +17,7 @@ import {
 import styles from './styles.module.css';
 
 const Calendar = () => {
+  const { open } = useModal();
   const calendarRef = createRef<FullCalendar>();
   const [calendarEvents] = useState<EventInput[]>([
     {
@@ -66,9 +69,8 @@ const Calendar = () => {
     },
   ]);
 
-  const handleDateClick = ({ dateStr }: DateClickArg) => {
-    console.log('[date click]', dateStr);
-    // TODO 일정 추가 모달 오픈
+  const handleDateClick = ({ dateStr, view }: DateClickArg) => {
+    view.type === 'dayGridMonth' && open(ScheduleEditModal, { date: dateStr });
   };
   const handleEventClick = ({ event }: EventClickArg) => {
     console.log('[event click]', event.title);
