@@ -23,8 +23,8 @@ function App() {
   }, []);
 
   return (
-    <ModalProvider>
-      <ToastProvider>
+    <ToastProvider>
+      <ModalProvider>
         <MobileHeader open={sidebarOpen} />
         <Sidebar isOpen={openSidebar} close={sidebarClose} />
         <Routes>
@@ -36,8 +36,8 @@ function App() {
             />
           ))}
         </Routes>
-      </ToastProvider>
-    </ModalProvider>
+      </ModalProvider>
+    </ToastProvider>
   );
 }
 
