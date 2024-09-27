@@ -16,6 +16,10 @@ const Confirm = ({ id, message, ok }: Props) => {
   const handleClose = () => {
     close(id);
   };
+  const handleOK = () => {
+    ok && ok();
+    close(id);
+  };
 
   return (
     <Modal id={id} className={styles.confirm} onBgClick={handleClose}>
@@ -27,7 +31,7 @@ const Confirm = ({ id, message, ok }: Props) => {
       </div>
       <footer className={styles.footer}>
         <Button onClick={handleClose}>아니오</Button>
-        <Button onClick={() => ok && ok()} active>
+        <Button onClick={handleOK} active>
           네
         </Button>
       </footer>
