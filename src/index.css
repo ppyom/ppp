@@ -16,7 +16,7 @@
 }
 
 #root {
-  @apply flex;
+  @apply flex h-screen;
 }
 main {
   @apply flex-1;
@@ -25,7 +25,7 @@ main {
 /* Modal */
 .modal--bg {
   @apply opacity-0;
-  @apply fixed left-0 top-0;
+  @apply fixed left-0 top-0 z-[9999];
   @apply size-full;
   @apply flex justify-center items-center;
   @apply bg-base-black/10 backdrop-blur;
@@ -41,6 +41,6 @@ main {
 
 @media (max-width: 500px) {
   #root {
-    @apply block;
+    @apply flex-col;
   }
 }

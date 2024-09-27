@@ -1,0 +1,22 @@
+.container {
+  @apply border-2 border-red-500;
+  @apply flex items-center;
+  @apply px-2 py-3;
+  @apply border-[1px] border-neutral-300 rounded-lg;
+  @apply duration-300;
+}
+.container input {
+  @apply outline-none;
+  @apply flex-1;
+}
+.icon {
+  @apply text-neutral-300 text-xl;
+  @apply duration-300;
+}
+.container:has(input:focus),
+.container:has(input:not(:placeholder-shown)) {
+  @apply border-brand-default;
+}
+.container:has(input:not(:placeholder-shown)) .icon {
+  @apply text-brand-default;
+}

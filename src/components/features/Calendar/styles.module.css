@@ -1,0 +1,99 @@
+.container {
+  @apply h-full;
+  @apply flex flex-col gap-4;
+}
+
+div[class*="fc"]:has(.calendar) {
+  @apply flex-1;
+}
+.calendar {
+  @apply font-light text-sm;
+}
+.calendar div[class*="fc-scroller"] .week {
+  @apply font-normal;
+}
+
+.calendar.dayGridMonth * {
+  @apply border-none;
+}
+.calendar.dayGridMonth {
+  @apply h-full;
+}
+.calendar.dayGridMonth div[class*="fc-scroller"] tr {
+  @apply border-solid border-t-2 border-t-neutral-200;
+}
+.calendar.dayGridMonth div[class*="fc-scroller"] tr:has(.week) {
+  @apply border-b-2;
+}
+
+.calendar .day {
+  @apply p-1;
+  @apply duration-300;
+}
+.day.today[class*="fc-day-today"] {
+  @apply bg-inherit;
+}
+.day:hover {
+  @apply bg-brand-light/30 !important;
+}
+.day div[class="fc-daygrid-day-top"] {
+  @apply justify-center;
+}
+.day a[class="fc-daygrid-day-number"] {
+  @apply flex justify-center items-center;
+  @apply size-8 p-1;
+}
+.day.today a[class="fc-daygrid-day-number"] {
+  @apply bg-brand-default text-base-white rounded-full;
+}
+.day div[class="fc-highlight"] {
+  @apply bg-brand-light/10;
+}
+
+.event {
+  @apply bg-brand-light;
+  @apply px-1;
+  @apply text-xs font-normal;
+}
+.event.dd {
+  @apply bg-service-errorLight;
+}
+.event div[class="fc-event-main-frame"] {
+  @apply flex text-base-black;
+}
+.event div[class="fc-event-main-frame"] * {
+  @apply m-0;
+}
+.day:has(.event) a[class="fc-daygrid-day-number"] {
+  @apply font-bold;
+}
+.day:has(.event.holiday) a[class="fc-daygrid-day-number"] {
+  @apply text-service-error;
+}
+
+div[class*="fc"]:has(.calendar.timeGridWeek) {
+  @apply border-0;
+}
+.calendar.timeGridWeek .week {
+  @apply py-2;
+}
+.calendar.timeGridWeek
+  .week[class*="fc-day-today"]
+  a[class="fc-col-header-cell-cushion"] {
+  @apply border-[1px] border-brand-default rounded-lg;
+  @apply text-brand-default font-medium;
+  @apply bg-brand-light/30 px-2;
+}
+.calendar.timeGridWeek .today {
+  @apply bg-brand-light/30;
+}
+.calendar.timeGridWeek .event {
+  @apply border-transparent shadow-none;
+}
+
+.calendar *::-webkit-scrollbar {
+  @apply size-2;
+}
+.calendar *::-webkit-scrollbar-thumb {
+  @apply bg-brand-default/50 rounded;
+}

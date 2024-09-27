@@ -1,0 +1,43 @@
+.schedule--edit {
+  @apply flex flex-col gap-4;
+}
+
+.header {
+  @apply flex justify-between items-center;
+  @apply text-lg;
+}
+.header p {
+  @apply text-brand-default;
+}
+
+.contents,
+.datetime {
+  @apply flex flex-col gap-2;
+}
+.datetime {
+  @apply gap-3 items-start p-4;
+  @apply border-2 border-neutral-100 rounded-lg;
+}
+.date,
+.time {
+  @apply w-full flex justify-between gap-2;
+}
+.date > *,
+.time > * {
+  @apply flex-1;
+}
+
+.footer {
+  @apply flex justify-end items-center gap-2;
+}
+
+@media (max-width: 500px) {
+  .schedule--edit[class*="modal"] {
+    @apply w-full h-full;
+    @apply rounded-none;
+  }
+  .date,
+  .time {
+    @apply flex-col;
+  }
+}

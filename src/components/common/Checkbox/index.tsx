@@ -1,16 +1,22 @@
-import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import classNames from '@/utils/classNames.ts';
 import styles from './styles.module.css';
 
 interface Props {
   label: string;
+  checked: boolean;
+  setChecked: (prevState: boolean) => void;
   className?: string;
   onClick?: (checked: boolean) => void;
 }
 
-const Checkbox = ({ className = '', label, onClick }: Props) => {
-  const [checked, setChecked] = useState(false);
+const Checkbox = ({
+  label,
+  checked,
+  setChecked,
+  className = '',
+  onClick,
+}: Props) => {
   const handleCheckboxClick = () => {
     setChecked(!checked);
     onClick && onClick(checked);
