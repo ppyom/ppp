@@ -1,0 +1,25 @@
+.schedule--detail[class*="modal"] {
+  @apply max-w-[320px];
+}
+
+.header,
+.header > div {
+  @apply flex items-center;
+}
+.header {
+  @apply justify-between;
+  @apply pb-4;
+}
+.header p {
+  @apply text-lg;
+}
+.header > div {
+  @apply gap-2;
+}
+
+.contents {
+  @apply text-sm;
+}
+.contents p {
+  @apply flex gap-2;
+}

@@ -7,6 +7,7 @@ import { EventChangeArg, EventClickArg, EventInput } from '@fullcalendar/core';
 import classNames from '@/utils/classNames.ts';
 import CalendarHeader from '@/components/features/CalendarHeader';
 import ScheduleEditModal from 'components/features/ScheduleEditModal';
+import ScheduleDetailModal from '@/components/features/ScheduleDetailModal';
 import useModal from '@/hooks/useModal.ts';
 import {
   dateFormatter,
@@ -14,6 +15,7 @@ import {
   formatter,
   timeFormatter,
 } from '@/utils/datetimeFormatter.ts';
+import type { Event } from '@/types/event.ts';
 import styles from './styles.module.css';
 
 const Calendar = () => {
@@ -24,6 +26,7 @@ const Calendar = () => {
       id: '1',
       title: '프로젝트',
       start: dateFormatter(),
+      end: dateFormatter(),
       classNames: [],
     },
     {
@@ -72,9 +75,15 @@ const Calendar = () => {
   const handleDateClick = ({ dateStr, view }: DateClickArg) => {
     view.type === 'dayGridMonth' && open(ScheduleEditModal, { date: dateStr });
   };
-  const handleEventClick = ({ event }: EventClickArg) => {
-    console.log('[event click]', event.title);
-    // TODO 일정 상세 모달 오픈
+  const handleEventClick = ({ event, ...args }: EventClickArg) => {
+    const eventObject: Event = {
+      id: event.id,
+      title: event.title,
+      start: event.startStr,
+      end: event.endStr,
+      hasTime: event.startStr.includes('T'),
+    };
+    open(ScheduleDetailModal, { event: eventObject });
   };
   const handleEventChange = (arg: EventChangeArg) => {
     console.log('[event change]', arg);
