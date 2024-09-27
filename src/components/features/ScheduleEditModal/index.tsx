@@ -30,7 +30,8 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
       checked ? datetimeFormatter(target) : dateFormatter(target),
     [checked],
   );
-  const [schedule, setSchedule] = useState({
+  const [schedule, setSchedule] = useState<Event>({
+    id: event?.id || '', // TODO ID 어떻게 작성할지 결정 후 수정
     title: event?.title || '',
     start: formatter(event?.start || date),
     end: formatter(event?.end || date),
