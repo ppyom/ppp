@@ -6,19 +6,12 @@ import useTimeSelect from '@/hooks/useTimeSelect.ts';
 interface Props {
   label: string;
   onTimeChange: (time: { hour: Hour; minute: Minute }) => void;
-  defaultHour?: Hour;
-  defaultMinute?: Minute;
+  defaultTime?: string;
 }
 
-const TimeSelect = ({
-  label,
-  onTimeChange,
-  defaultHour,
-  defaultMinute,
-}: Props) => {
+const TimeSelect = ({ label, onTimeChange, defaultTime }: Props) => {
   const { hour, setHour, minute, setMinute, makeOption } = useTimeSelect(
-    defaultHour || hours[0],
-    defaultMinute || minutes[0],
+    defaultTime || '00:00',
   );
   const handleTimeChange = <T,>(type: 'hour' | 'minute', option: T) => {
     type === 'hour' ? setHour(option) : setMinute(option);

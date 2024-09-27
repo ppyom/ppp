@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import moment, { MomentInput } from 'moment';
 import { FiX } from 'react-icons/fi';
-import { EventInput } from '@fullcalendar/core';
 import Modal from '@/components/layout/Modal';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
@@ -14,17 +13,18 @@ import useCheckbox from '@/hooks/useCheckbox.ts';
 import { dateFormatter, datetimeFormatter } from '@/utils/datetimeFormatter.ts';
 import type * as ModalType from '@/types/modal.ts';
 import type { Hour, Minute } from '@/types/time.ts';
+import type { Event } from '@/types/event.ts';
 import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
   date: string;
-  event?: EventInput;
+  event?: Event;
 }
 
 const ScheduleEditModal = ({ id, date, event }: Props) => {
   const { close } = useModal();
   const { setToast } = useToast();
-  const { checked, setChecked } = useCheckbox();
+  const { checked, setChecked } = useCheckbox(!!event?.hasTime);
   const formatter = useCallback(
     (target: MomentInput) =>
       checked ? datetimeFormatter(target) : dateFormatter(target),
@@ -91,12 +91,12 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
           <div className={styles.date}>
             <DateInput
               label="시작일"
-              date={schedule.start}
+              date={dateFormatter(schedule.start)}
               onDateChange={(date: string) => handleDateChange('start', date)}
             />
             <DateInput
               label="종료일"
-              date={schedule.end}
+              date={dateFormatter(schedule.end)}
               onDateChange={(date: string) => handleDateChange('end', date)}
             />
           </div>
@@ -104,12 +104,14 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
             <div className={styles.time}>
               <TimeSelect
                 label="시작시간"
+                defaultTime={schedule.start.split(' ')[1]}
                 onTimeChange={(time: { hour: Hour; minute: Minute }) =>
                   handleTimeChange('start', time)
                 }
               />
               <TimeSelect
                 label="종료시간"
+                defaultTime={schedule.end.split(' ')[1]}
                 onTimeChange={(time: { hour: Hour; minute: Minute }) =>
                   handleTimeChange('end', time)
                 }
