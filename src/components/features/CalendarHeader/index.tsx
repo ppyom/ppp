@@ -3,6 +3,7 @@ import moment, { Moment } from 'moment/moment';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import FullCalendar from '@fullcalendar/react';
 import Button from '@/components/common/Button';
+import useCalendar from '@/hooks/useCalendar.ts';
 import styles from './styles.module.css';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const CalendarHeader = ({ calendarRef }: Props) => {
+  const { handleNavClick } = useCalendar(calendarRef);
   const [date, setDate] = useState<Moment>(
     moment(calendarRef.current?.getApi().getDate()),
   );
@@ -17,17 +19,7 @@ const CalendarHeader = ({ calendarRef }: Props) => {
     calendarRef.current?.getApi().view.type || 'dayGridMonth',
   );
   const handleDateChange = (type: 'prev' | 'today' | 'next') => {
-    const api = calendarRef.current?.getApi();
-    if (api) {
-      if (type === 'prev') {
-        api.prev();
-      } else if (type === 'today') {
-        api.today();
-      } else {
-        api.next();
-      }
-      setDate(moment(api.getDate()));
-    }
+    handleNavClick(type).then((api) => setDate(moment(api.getDate())));
   };
   const handleCalendarTypeChange = (type: string) => {
     const api = calendarRef.current?.getApi();
