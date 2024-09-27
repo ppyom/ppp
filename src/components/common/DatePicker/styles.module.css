@@ -1,0 +1,55 @@
+.container {
+  @apply border-[1px] rounded-lg;
+  @apply px-2.5 py-5 w-[300px];
+  @apply text-sm;
+}
+
+.header,
+.header > div {
+  @apply flex items-center;
+}
+.header {
+  @apply justify-between px-4 pb-5;
+}
+.header p {
+  @apply text-brand-dark font-medium;
+}
+.header > div {
+  @apply gap-2 text-xs;
+}
+
+.datepicker {
+}
+.datepicker * {
+  @apply border-none !important;
+}
+tr:has(.week) {
+  @apply mb-2;
+}
+.week {
+  @apply text-brand-dark font-normal;
+}
+
+.day > div {
+  @apply flex items-center justify-center;
+}
+.day[class*="fc-day-today"] {
+  @apply bg-inherit !important;
+}
+.day div[class="fc-daygrid-day-events"] {
+  @apply hidden;
+}
+.day div[class="fc-daygrid-day-top"] {
+  @apply justify-center items-center size-full;
+}
+.day a {
+  @apply flex justify-center items-center;
+  @apply p-2 size-8 rounded-full;
+  @apply duration-300 font-light;
+}
+.day:hover a {
+  @apply bg-brand-light/30;
+}
+.day.selected a {
+  @apply bg-brand-light text-base-white font-medium;
+}
