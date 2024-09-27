@@ -24,6 +24,7 @@ MBTI P인 프로그래머를 위한 플래너
 
 ![React](https://img.shields.io/badge/React-ffffff?style=flat-square&logo=react&logoColor=ffffff&labelColor=61dafb&color=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-ffffff?style=flat-square&logo=typescript&logoColor=ffffff&labelColor=3178c6&color=3178c6)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-ffffff?style=flat-square&logo=TailwindCSS&logoColor=ffffff&labelColor=06B6D4&color=06B6D4)
 
 </div>
 
