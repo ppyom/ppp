@@ -4,7 +4,6 @@ import type * as ToastType from '@/types/toast.ts';
 
 const ToastContext = createContext({
   setToast: (toast: Partial<ToastType.Toast>) => {},
-  done: (id: string) => {},
 });
 
 const ToastProvider = ({ children }) => {
@@ -26,7 +25,6 @@ const ToastProvider = ({ children }) => {
     <ToastContext.Provider
       value={{
         setToast,
-        done,
       }}
     >
       {children}
