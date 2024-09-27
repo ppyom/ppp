@@ -95,15 +95,14 @@ const Calendar = () => {
         // Styles
         headerToolbar={false}
         eventDisplay="block"
-        slotMinTime={500}
-        dayCellClassNames={(arg) =>
-          classNames(styles.day, arg.isToday && styles.today)
-        }
-        dayHeaderClassNames={classNames(styles.week)}
-        eventClassNames={classNames(styles.event)}
         viewClassNames={(arg) =>
           classNames(styles.calendar, styles[arg.view.type])
         }
+        dayHeaderClassNames={classNames(styles.week)}
+        dayCellClassNames={(arg) =>
+          classNames(styles.day, arg.isToday && styles.today)
+        }
+        eventClassNames={classNames(styles.event)}
         eventTimeFormat={(arg) =>
           arg.end
             ? `${timeFormatter(arg.start.array)}-${timeFormatter(arg.end.array)}`
