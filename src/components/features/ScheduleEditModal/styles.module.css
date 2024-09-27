@@ -30,3 +30,14 @@
 .footer {
   @apply flex justify-end items-center gap-2;
 }
+
+@media (max-width: 500px) {
+  .schedule--edit[class*="modal"] {
+    @apply w-full h-full;
+    @apply rounded-none;
+  }
+  .date,
+  .time {
+    @apply flex-col;
+  }
+}
