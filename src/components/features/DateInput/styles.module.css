@@ -1,0 +1,23 @@
+.container {
+  @apply relative;
+}
+
+.label {
+  @apply mb-1;
+  @apply text-sm text-neutral-500;
+}
+
+.date {
+  @apply flex justify-between items-center;
+  @apply border-[1px] border-neutral-300 rounded-lg;
+  @apply p-2;
+  @apply duration-300;
+}
+.date.active {
+  @apply border-brand-default;
+}
+
+.datepicker {
+  @apply absolute top-full left-1/2 -translate-x-1/2 z-[9999];
+  @apply bg-base-white border-brand-default/50 shadow-xl;
+}
