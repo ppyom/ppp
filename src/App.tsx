@@ -11,9 +11,11 @@ function App() {
 
   const sidebarOpen = () => setOpenSidebar(true);
   const sidebarClose = () => setOpenSidebar(false);
+
+  // window.resize 이벤트 발생 시 innerWidth가 500을 넘어가면 sidebar 닫음
   const handleSidebarClose = ({ target }: WindowEventMap['resize']) => {
     if (target instanceof Window) {
-      target.innerWidth > 800 && sidebarClose();
+      target.innerWidth > 500 && sidebarClose();
     }
   };
 

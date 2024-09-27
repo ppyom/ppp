@@ -6,6 +6,7 @@ interface Props {
   open: () => void;
 }
 
+// 모바일 화면에서 사용하기 위한 헤더
 const MobileHeader = ({ open }: Props) => {
   return (
     <header className={styles.header}>

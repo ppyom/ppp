@@ -9,6 +9,7 @@ interface Props extends React.ComponentPropsWithoutRef<'input'> {
   icon?: {
     Icon: IconType;
     className?: string;
+    // 아이콘 클릭 시 실행될 함수
     onClick?: () => void;
   };
 }

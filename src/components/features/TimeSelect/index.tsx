@@ -5,6 +5,7 @@ import useTimeSelect from '@/hooks/useTimeSelect.ts';
 
 interface Props {
   label: string;
+  // 시간 선택 시 외부 데이터(상위 컴포넌트 데이터) 수정 함수
   onTimeChange: (time: { hour: Hour; minute: Minute }) => void;
   defaultTime?: string;
 }

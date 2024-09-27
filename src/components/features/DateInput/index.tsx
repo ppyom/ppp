@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 interface Props {
   label: string;
   date: string;
+  // 날짜 선택 시 외부 데이터(상위 컴포넌트 데이터) 수정 함수
   onDateChange: (date: string) => void;
 }
 

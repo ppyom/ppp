@@ -25,6 +25,7 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
   const { close } = useModal();
   const { setToast } = useToast();
   const { checked, setChecked } = useCheckbox(!!event?.hasTime);
+  // checked 함수의 값에 따라 Date 처리
   const formatter = useCallback(
     (target: MomentInput) =>
       checked ? datetimeFormatter(target) : dateFormatter(target),
@@ -36,14 +37,17 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
     start: formatter(event?.start || date),
     end: formatter(event?.end || date),
   });
+  // Schedule의 title을 수정하는 함수
   const handleTitleChange = (text: string) => {
     setSchedule((prev) => ({ ...prev, title: text }));
   };
+  // Schedule의 date를 수정하는 함수
   const handleDateChange = (type: 'start' | 'end', date: string) => {
     const prev = moment(schedule[type]);
     const newDate = moment(date).hour(prev.hour()).minute(prev.minute());
     setSchedule((prev) => ({ ...prev, [type]: formatter(newDate) }));
   };
+  // Schedule의 time을 수정하는 함수
   const handleTimeChange = (
     type: 'start' | 'end',
     time: { hour: Hour; minute: Minute },

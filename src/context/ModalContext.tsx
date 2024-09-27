@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import type * as ModalType from '@/types/modal.ts';
 
+// Modal을 전역에서 불러와 사용하기 위한 Context
 const ModalContext = createContext({
   open: <T,>(modal: React.ComponentType<T>, props: Omit<T, 'id'>) => {},
   close: (id: string) => {},

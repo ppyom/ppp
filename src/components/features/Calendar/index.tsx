@@ -21,6 +21,7 @@ import styles from './styles.module.css';
 const Calendar = () => {
   const { open } = useModal();
   const calendarRef = createRef<FullCalendar>();
+  // 임시 데이터
   const [calendarEvents] = useState<EventInput[]>([
     {
       id: '1',
@@ -75,7 +76,7 @@ const Calendar = () => {
   const handleDateClick = ({ dateStr, view }: DateClickArg) => {
     view.type === 'dayGridMonth' && open(ScheduleEditModal, { date: dateStr });
   };
-  const handleEventClick = ({ event, ...args }: EventClickArg) => {
+  const handleEventClick = ({ event }: EventClickArg) => {
     const eventObject: Event = {
       id: event.id,
       title: event.title,

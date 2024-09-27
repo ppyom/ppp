@@ -6,6 +6,7 @@ interface Props {
   close: () => void;
 }
 
+// Sidebar 내부에 들어가있는 헤더
 const Header = ({ close }: Props) => {
   return (
     <header className={styles.header}>

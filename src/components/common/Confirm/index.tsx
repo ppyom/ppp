@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
   message: string;
+  // Confirm의 "네" 버튼 클릭 시 실행될 함수
   ok?: () => void;
 }
 
