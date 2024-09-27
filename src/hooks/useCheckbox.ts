@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useCheckbox = () => {
-  const [checked, setChecked] = useState(false);
+const useCheckbox = (initialChecked: boolean) => {
+  const [checked, setChecked] = useState(initialChecked);
   return { checked, setChecked };
 };
 
