@@ -1,0 +1,34 @@
+.select {
+  @apply border-none shadow-none outline-none;
+}
+.select.focused {
+  @apply border-brand-dark;
+}
+
+.control {
+  @apply shadow-none outline-none;
+  @apply p-1;
+  @apply rounded-lg !important;
+}
+.control:hover,
+.control.focused {
+  @apply shadow-none;
+  @apply border-brand-dark !important;
+  @apply bg-brand-light/10;
+}
+
+.option {
+}
+.option.focused {
+  @apply bg-brand-light/10;
+}
+.option.selected {
+  @apply bg-brand-light;
+}
+
+.select *::-webkit-scrollbar {
+  @apply size-2;
+}
+.select *::-webkit-scrollbar-thumb {
+  @apply bg-brand-light/50 rounded;
+}
