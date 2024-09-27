@@ -1,0 +1,11 @@
+.label {
+  @apply mb-1;
+  @apply text-sm text-neutral-500;
+}
+
+.select--box {
+  @apply flex items-center gap-2;
+}
+.select--box > * {
+  @apply flex-1;
+}
