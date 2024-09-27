@@ -8,13 +8,18 @@ import styles from './styles.module.css';
 interface Props {
   label: string;
   date: string;
+  onDateChange: (date: string) => void;
 }
 
-const DateInput = ({ label, date }: Props) => {
+const DateInput = ({ label, date, onDateChange }: Props) => {
   const { selected, updateDate } = useDatePicker(date);
   const [open, setOpen] = useState(false);
   const handleDatePickerClose = () => {
     setOpen(false);
+  };
+  const handleDateSelect = (date: string) => {
+    updateDate(date);
+    onDateChange(date);
   };
   return (
     <div className={styles.container}>
@@ -30,7 +35,7 @@ const DateInput = ({ label, date }: Props) => {
         <DatePicker
           className={styles.datepicker}
           initialDate={selected}
-          updateDate={updateDate}
+          updateDate={handleDateSelect}
           onDateClick={handleDatePickerClose}
         />
       )}
