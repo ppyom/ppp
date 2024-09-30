@@ -55,7 +55,7 @@ div[class*="fc"]:has(.calendar) {
   @apply px-1;
   @apply text-xs font-normal;
 }
-.event.dd {
+.event.holiday {
   @apply bg-service-errorLight;
 }
 .event div[class="fc-event-main-frame"] {
