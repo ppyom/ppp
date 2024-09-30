@@ -1,94 +1,32 @@
-import { createRef, useState } from 'react';
+import { createRef } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import { EventChangeArg, EventClickArg, EventInput } from '@fullcalendar/core';
-import classNames from '@/utils/classNames.ts';
+import { EventChangeArg, EventClickArg } from '@fullcalendar/core';
 import CalendarHeader from '@/components/features/CalendarHeader';
 import ScheduleEditModal from 'components/features/ScheduleEditModal';
 import ScheduleDetailModal from '@/components/features/ScheduleDetailModal';
+import useSchedule from '@/hooks/useSchedule.ts';
 import useModal from '@/hooks/useModal.ts';
-import {
-  dateFormatter,
-  datetimeFormatter,
-  formatter,
-  timeFormatter,
-} from '@/utils/datetimeFormatter.ts';
-import type { Event } from '@/types/event.ts';
+import classNames from '@/utils/classNames.ts';
+import { formatter, timeFormatter } from '@/utils/datetimeFormatter.ts';
+import { eventToEventInput } from '@/utils/schedule.ts';
 import styles from './styles.module.css';
 
 const Calendar = () => {
-  const { open } = useModal();
   const calendarRef = createRef<FullCalendar>();
-  // 임시 데이터
-  const [calendarEvents] = useState<EventInput[]>([
-    {
-      id: '1',
-      title: '프로젝트',
-      start: dateFormatter(),
-      end: dateFormatter(),
-      classNames: [],
-    },
-    {
-      id: '2',
-      title: '점심시간',
-      start: datetimeFormatter(),
-      end: datetimeFormatter(),
-    },
-    {
-      id: '3',
-      title: '추석연휴',
-      start: '2024-09-16',
-      editable: false,
-      classNames: [styles.dd, styles.holiday],
-    },
-    {
-      id: '4',
-      title: '추석',
-      start: '2024-09-17',
-      editable: false,
-      classNames: [styles.dd, styles.holiday],
-    },
-    {
-      id: '5',
-      title: '추석연휴',
-      start: '2024-09-18',
-      editable: false,
-      classNames: [styles.dd, styles.holiday],
-    },
-    {
-      id: '6',
-      title: '국군의날',
-      start: '2024-10-01',
-      editable: false,
-      classNames: [styles.dd, styles.holiday],
-    },
-    {
-      id: '7',
-      title: '개천절',
-      start: '2024-10-03',
-      editable: false,
-      classNames: [styles.dd, styles.holiday],
-    },
-  ]);
+  const { open } = useModal();
+  const { schedule, handleSaveEvent } = useSchedule();
 
   const handleDateClick = ({ dateStr, view }: DateClickArg) => {
     view.type === 'dayGridMonth' && open(ScheduleEditModal, { date: dateStr });
   };
   const handleEventClick = ({ event }: EventClickArg) => {
-    const eventObject: Event = {
-      id: event.id,
-      title: event.title,
-      start: event.startStr,
-      end: event.endStr,
-      hasTime: event.startStr.includes('T'),
-    };
-    open(ScheduleDetailModal, { event: eventObject });
+    open(ScheduleDetailModal, { scheduleId: event.id });
   };
-  const handleEventChange = (arg: EventChangeArg) => {
-    console.log('[event change]', arg);
-    // TODO 저장 로직 구현 후 작업
+  const handleEventChange = ({ event }: EventChangeArg) => {
+    handleSaveEvent(event);
   };
 
   return (
@@ -98,7 +36,7 @@ const Calendar = () => {
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        events={calendarEvents}
+        events={Object.values(schedule).map(eventToEventInput)}
         // Events
         editable={true}
         dateClick={handleDateClick}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import moment, { MomentInput } from 'moment';
+import { v4 as uuid } from 'uuid';
 import { FiX } from 'react-icons/fi';
 import Modal from '@/components/layout/Modal';
 import Button from '@/components/common/Button';
@@ -10,18 +11,20 @@ import Checkbox from '@/components/common/Checkbox';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
 import useCheckbox from '@/hooks/useCheckbox.ts';
+import useSchedule from '@/hooks/useSchedule.ts';
 import { dateFormatter, datetimeFormatter } from '@/utils/datetimeFormatter.ts';
 import type * as ModalType from '@/types/modal.ts';
 import type { Hour, Minute } from '@/types/time.ts';
-import type { Event } from '@/types/event.ts';
+import type { Schedule } from '@/types/schedule.ts';
 import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
   date: string;
-  event?: Event;
+  event?: Schedule;
 }
 
 const ScheduleEditModal = ({ id, date, event }: Props) => {
+  const { handleSaveEvent } = useSchedule();
   const { close } = useModal();
   const { setToast } = useToast();
   const { checked, setChecked } = useCheckbox(!!event?.hasTime);
@@ -31,11 +34,12 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
       checked ? datetimeFormatter(target) : dateFormatter(target),
     [checked],
   );
-  const [schedule, setSchedule] = useState<Event>({
-    id: event?.id || '', // TODO ID 어떻게 작성할지 결정 후 수정
+  const [schedule, setSchedule] = useState<Schedule>({
+    id: event?.id || uuid(),
     title: event?.title || '',
     start: formatter(event?.start || date),
     end: formatter(event?.end || date),
+    hasTime: event?.hasTime || false,
   });
   // Schedule의 title을 수정하는 함수
   const handleTitleChange = (text: string) => {
@@ -65,9 +69,8 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
       setToast({ type: 'error', message: '일정 제목을 입력해주세요.' });
       return;
     }
-    // TODO 일정 저장
+    handleSaveEvent({ ...schedule, hasTime: checked }, true);
     setToast({ type: 'success', message: '저장되었습니다.' });
-    console.log(schedule.title, schedule.start, schedule.end);
     close(id);
   };
 
@@ -116,7 +119,9 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
               />
               <TimeSelect
                 label="종료시간"
-                defaultTime={schedule.end.split(' ')[1]}
+                defaultTime={
+                  schedule.end ? schedule.end.split(' ')[1] : '00:00'
+                }
                 onTimeChange={(time: { hour: Hour; minute: Minute }) =>
                   handleTimeChange('end', time)
                 }
