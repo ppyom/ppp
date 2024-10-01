@@ -1,0 +1,17 @@
+.tag {
+  @apply px-2 py-1;
+  @apply text-xs;
+  @apply bg-brand-default text-base-white rounded-lg;
+}
+.tag.javascript {
+  @apply bg-tags-javascript;
+}
+.tag.react {
+  @apply bg-tags-react;
+}
+.tag.html {
+  @apply bg-tags-html;
+}
+.tag.css {
+  @apply bg-tags-css;
+}
