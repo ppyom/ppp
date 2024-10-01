@@ -1,0 +1,22 @@
+.container {
+  @apply flex gap-2;
+  @apply relative;
+}
+.container div:has(input) {
+  @apply flex-1;
+  @apply px-4;
+  @apply rounded-xl;
+}
+.container .icon {
+  @apply text-brand-light !important;
+  @apply text-2xl;
+}
+.container .add {
+  @apply text-3xl px-4;
+  @apply rounded-xl;
+}
+.deadline {
+  @apply absolute top-1/2 -translate-y-1/2 left-4;
+  @apply bg-brand-default text-base-white px-2 py-0.5;
+  @apply rounded-lg;
+}
