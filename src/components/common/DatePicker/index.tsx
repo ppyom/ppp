@@ -1,4 +1,4 @@
-import { createRef, useState } from 'react';
+import { createRef } from 'react';
 import moment from 'moment';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import FullCalendar from '@fullcalendar/react';
@@ -28,29 +28,20 @@ const DatePicker = ({
   onDateClick,
 }: Props) => {
   const calendarRef = createRef<FullCalendar>();
-  const { handleNavClick } = useCalendar(calendarRef);
-  const [calendarDate, setCalendarDate] = useState<Date | undefined>(
-    calendarRef.current?.getApi().getDate(),
-  );
+  const { date, handleNavClick } = useCalendar(calendarRef);
   const handleDateClick = ({ dateStr }: DateClickArg) => {
     updateDate(dateStr);
     onDateClick && onDateClick();
   };
-  const handleDateChange = (type: 'prev' | 'next') => {
-    handleNavClick(type).then((api) => setCalendarDate(api.getDate()));
-  };
   return (
     <div className={classNames(styles.container, className)}>
       <header className={styles.header}>
-        <p>{formatter('MMMM YYYY', calendarDate)}</p>
+        <p>{formatter('MMMM YYYY', date)}</p>
         <div>
-          <Button
-            Icon={FiChevronLeft}
-            onClick={() => handleDateChange('prev')}
-          />
+          <Button Icon={FiChevronLeft} onClick={() => handleNavClick('prev')} />
           <Button
             Icon={FiChevronRight}
-            onClick={() => handleDateChange('next')}
+            onClick={() => handleNavClick('next')}
           />
         </div>
       </header>

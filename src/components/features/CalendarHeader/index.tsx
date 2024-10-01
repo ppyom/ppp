@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useState } from 'react';
-import moment, { Moment } from 'moment/moment';
+import moment from 'moment/moment';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import FullCalendar from '@fullcalendar/react';
 import Button from '@/components/common/Button';
@@ -11,16 +11,10 @@ interface Props {
 }
 
 const CalendarHeader = ({ calendarRef }: Props) => {
-  const { handleNavClick } = useCalendar(calendarRef);
-  const [date, setDate] = useState<Moment>(
-    moment(calendarRef.current?.getApi().getDate()),
-  );
+  const { date, handleNavClick } = useCalendar(calendarRef);
   const [type, setType] = useState<string>(
     calendarRef.current?.getApi().view.type || 'dayGridMonth',
   );
-  const handleDateChange = (type: 'prev' | 'today' | 'next') => {
-    handleNavClick(type).then((api) => setDate(moment(api.getDate())));
-  };
   const handleCalendarTypeChange = (type: string) => {
     const api = calendarRef.current?.getApi();
     if (api) {
@@ -32,7 +26,6 @@ const CalendarHeader = ({ calendarRef }: Props) => {
   useEffect(() => {
     const api = calendarRef.current?.getApi();
     if (api) {
-      setDate(moment(api.getDate()));
       setType(api.view.type);
     }
   }, [calendarRef]);
@@ -40,16 +33,16 @@ const CalendarHeader = ({ calendarRef }: Props) => {
   return (
     <header className={styles.header}>
       <Button
-        onClick={() => handleDateChange('today')}
+        onClick={() => handleNavClick('today')}
         disabled={moment().isSame(
-          date,
+          date.toISOString(),
           type === 'dayGridMonth' ? 'month' : 'week',
         )}
       >
         Today
       </Button>
       <div>
-        <Button Icon={FiChevronLeft} onClick={() => handleDateChange('prev')} />
+        <Button Icon={FiChevronLeft} onClick={() => handleNavClick('prev')} />
         <p className={styles.title}>
           {type === 'dayGridMonth' ? (
             <>
@@ -63,10 +56,7 @@ const CalendarHeader = ({ calendarRef }: Props) => {
             </>
           )}
         </p>
-        <Button
-          Icon={FiChevronRight}
-          onClick={() => handleDateChange('next')}
-        />
+        <Button Icon={FiChevronRight} onClick={() => handleNavClick('next')} />
       </div>
       <div>
         <Button
