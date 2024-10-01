@@ -3,6 +3,7 @@
   @apply flex items-center;
   @apply px-2 py-3;
   @apply border-[1px] border-neutral-300 rounded-lg;
+  @apply bg-base-white;
   @apply duration-300;
 }
 .container input {
