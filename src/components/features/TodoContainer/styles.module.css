@@ -1,0 +1,37 @@
+.container {
+  @apply flex flex-col gap-4;
+  @apply max-w-[750px] w-3/4 h-3/4;
+  @apply p-8 pt-16;
+  @apply rounded-[4rem];
+  @apply bg-base-white shadow-[0_0_0_2rem] shadow-base-white/30;
+}
+.container h3 {
+  @apply text-4xl font-extrabold text-center;
+}
+
+.todolist {
+  @apply flex-1 p-2;
+  @apply flex flex-col gap-3;
+  @apply overflow-auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply w-11/12;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    @apply max-w-full w-full h-full;
+    @apply p-0 pt-8;
+    @apply bg-transparent shadow-none;
+  }
+}
+
+.container *::-webkit-scrollbar {
+  @apply size-2;
+}
+.container *::-webkit-scrollbar-thumb {
+  @apply bg-brand-default/50 rounded;
+}
