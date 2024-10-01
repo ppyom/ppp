@@ -12,6 +12,7 @@ const eventToEventInput = (event: Schedule): EventInput => {
     start: event.start,
     end: event.end,
     editable: !event.isHoliday,
+    classNames: [event.isHoliday && styles.holiday],
   };
 };
 const eventInputToEvent = <T extends EventInput | EventImpl>(
@@ -28,16 +29,15 @@ const eventInputToEvent = <T extends EventInput | EventImpl>(
       : false,
   };
 };
-
-const holidayToEventInput = (holiday: Holiday) => {
-  const { locdate, isHoliday, dateName, dateKind } = holiday;
+const holidayToEvent = (holiday: Holiday) => {
+  const { locdate, dateName, dateKind } = holiday;
   return {
     id: `${locdate}_${dateKind}`,
     title: dateName,
-    start: moment(locdate.toString(), 'YYYYMMDD').format('YYYY-MM-DD'),
-    editable: false,
-    classNames: [isHoliday === 'Y' && styles.holiday],
+    start: moment(`${locdate}`, 'YYYYMMDD').format('YYYY-MM-DD'),
+    hasTime: false,
+    isHoliday: true,
   };
 };
 
-export { eventToEventInput, eventInputToEvent, holidayToEventInput };
+export { eventToEventInput, eventInputToEvent, holidayToEvent };

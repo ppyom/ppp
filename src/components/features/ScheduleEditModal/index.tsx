@@ -24,7 +24,7 @@ interface Props extends ModalType.Modal {
 }
 
 const ScheduleEditModal = ({ id, date, event }: Props) => {
-  const { handleSaveEvent } = useSchedule();
+  const { handleSaveSchedule } = useSchedule();
   const { close } = useModal();
   const { setToast } = useToast();
   const { checked, setChecked } = useCheckbox(!!event?.hasTime);
@@ -69,7 +69,7 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
       setToast({ type: 'error', message: '일정 제목을 입력해주세요.' });
       return;
     }
-    handleSaveEvent({ ...schedule, hasTime: checked }, true);
+    handleSaveSchedule({ ...schedule, hasTime: checked }, true);
     setToast({ type: 'success', message: '저장되었습니다.' });
     close(id);
   };

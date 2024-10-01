@@ -17,7 +17,7 @@ import styles from './styles.module.css';
 const Calendar = () => {
   const calendarRef = createRef<FullCalendar>();
   const { open } = useModal();
-  const { schedule, handleSaveEvent } = useSchedule();
+  const { scheduleList, handleSaveSchedule } = useSchedule();
 
   const handleDateClick = ({ dateStr, view }: DateClickArg) => {
     view.type === 'dayGridMonth' && open(ScheduleEditModal, { date: dateStr });
@@ -26,7 +26,7 @@ const Calendar = () => {
     open(ScheduleDetailModal, { scheduleId: event.id });
   };
   const handleEventChange = ({ event }: EventChangeArg) => {
-    handleSaveEvent(event);
+    handleSaveSchedule(event);
   };
 
   return (
@@ -36,7 +36,7 @@ const Calendar = () => {
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        events={Object.values(schedule).map(eventToEventInput)}
+        events={[...Object.values(scheduleList).map(eventToEventInput)]}
         // Events
         editable={true}
         dateClick={handleDateClick}

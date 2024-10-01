@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { EventInput } from '@fullcalendar/core';
 import { EventImpl } from '@fullcalendar/core/internal';
-import { save } from '@/store/reducer/scheduleReducer';
+import { remove, save } from '@/store/reducer/scheduleReducer';
 import { eventInputToEvent } from '@/utils/schedule.ts';
 import type { Schedule } from '@/types/schedule.ts';
 
-const useSchedule = () => {
-  const schedule = useSelector((state) => state.schedule);
+const useSchedule = (id?: string) => {
+  const scheduleList = useSelector((state) => state.schedule.scheduleList);
   const dispatch = useDispatch();
 
-  const handleSaveEvent = (
+  const getSchedule = () => {
+    return scheduleList[id];
+  };
+  const handleSaveSchedule = (
     event: Schedule | EventInput | EventImpl,
     isSchedule?: boolean,
   ) => {
@@ -18,10 +21,15 @@ const useSchedule = () => {
       : eventInputToEvent(event);
     dispatch(save(ev));
   };
+  const handleRemoveSchedule = () => {
+    dispatch(remove(id));
+  };
 
   return {
-    schedule,
-    handleSaveEvent,
+    scheduleList,
+    getSchedule,
+    handleSaveSchedule,
+    handleRemoveSchedule,
   };
 };
 

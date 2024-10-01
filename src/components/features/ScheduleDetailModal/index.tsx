@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { FiEdit2, FiTrash2, FiX } from 'react-icons/fi';
-import { remove } from '@/store/reducer/scheduleReducer.ts';
 import Modal from '@/components/layout/Modal';
 import Button from '@/components/common/Button';
 import ScheduleEditModal from '@/components/features/ScheduleEditModal';
 import Confirm from '@/components/common/Confirm';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
+import useSchedule from '@/hooks/useSchedule.ts';
 import { dateFormatter, datetimeFormatter } from '@/utils/datetimeFormatter.ts';
 import type * as ModalType from '@/types/modal.ts';
 import styles from './styles.module.css';
@@ -16,8 +15,8 @@ interface Props extends ModalType.Modal {
 }
 
 const ScheduleDetailModal = ({ id, scheduleId }: Props) => {
-  const schedule = useSelector((state) => state.schedule[scheduleId]) || {};
-  const dispatch = useDispatch();
+  const { getSchedule, handleRemoveSchedule } = useSchedule(scheduleId);
+  const schedule = getSchedule() || {};
 
   const { setToast } = useToast();
   const { open, close } = useModal();
@@ -39,7 +38,7 @@ const ScheduleDetailModal = ({ id, scheduleId }: Props) => {
       ok: () => {
         setToast({ type: 'success', message: '삭제되었습니다.' });
         handleClose();
-        dispatch(remove(schedule.id));
+        handleRemoveSchedule();
       },
     });
   };
