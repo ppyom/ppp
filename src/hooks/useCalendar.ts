@@ -1,12 +1,17 @@
-import { RefObject, useEffect, useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
+import { RefObject, useEffect, useMemo, useState } from 'react';
 import moment, { Moment } from 'moment';
+import FullCalendar from '@fullcalendar/react';
+import { useAppDispatch } from '@/store';
+import { fetchHolidays } from '@/store/reducer/scheduleReducer.ts';
 
 // Calendar/DatePicker에서 공통적으로 사용되는 네비게이션 버튼 클릭 이벤트를 사용하기 위한 훅
 const useCalendar = (calendarRef: RefObject<FullCalendar>) => {
+  const dispatch = useAppDispatch();
   const [date, setDate] = useState<Moment>(
     moment(calendarRef.current?.getApi().getDate()),
   );
+  const year = useMemo(() => date?.year().toString(), [date]);
+
   const handleNavClick = async (type: 'prev' | 'today' | 'next') => {
     const api = calendarRef.current?.getApi();
     if (api) {
@@ -29,8 +34,13 @@ const useCalendar = (calendarRef: RefObject<FullCalendar>) => {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchHolidays({ year }));
+  }, [year]);
+
   return {
     date,
+    year,
     handleNavClick,
   };
 };
