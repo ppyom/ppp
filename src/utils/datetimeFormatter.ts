@@ -16,4 +16,17 @@ const datetimeFormatter = (target?: MomentInput) => {
   return formatter('YYYY-MM-DD HH:mm', target);
 };
 
-export { formatter, dateFormatter, timeFormatter, datetimeFormatter };
+const makeDatetime = (
+  target: string = formatter('YY.MM.DD HH:mm'),
+  format: string = 'YY.MM.DD HH:mm',
+) => {
+  return datetimeFormatter(moment(target, format));
+};
+
+export {
+  formatter,
+  dateFormatter,
+  timeFormatter,
+  datetimeFormatter,
+  makeDatetime,
+};

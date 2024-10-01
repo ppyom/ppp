@@ -1,0 +1,31 @@
+.todo--deadline {
+  @apply flex flex-col gap-4;
+}
+
+.header {
+  @apply flex justify-between items-center;
+  @apply text-lg;
+}
+.header p {
+  @apply text-brand-default;
+}
+
+.datetime {
+  @apply flex flex-col gap-2 items-center;
+  @apply gap-3 items-start p-4;
+  @apply border-2 border-neutral-100 rounded-lg;
+}
+.datetime > * {
+  @apply w-full;
+}
+
+.footer {
+  @apply flex justify-end items-center gap-2;
+}
+
+@media (max-width: 500px) {
+  .todo--deadline[class*="modal"] {
+    @apply w-full h-full;
+    @apply rounded-none;
+  }
+}

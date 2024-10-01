@@ -3,6 +3,7 @@ import { FaClock, FaPlus } from 'react-icons/fa6';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import Confirm from '@/components/common/Confirm';
+import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
 import { stringToRem } from '@/utils/string.ts';
@@ -15,6 +16,11 @@ const TodoInput = () => {
   const [deadline, setDeadline] = useState('');
   const handleClockClick = () => {
     // TODO Deadline Setting 모달 오픈
+    open(TodoDeadlineModal, {
+      onDateChange: (date) => {
+        console.log(date);
+      },
+    });
   };
   const handleDeadlineClick = () => {
     open(Confirm, {
