@@ -20,3 +20,15 @@
   @apply bg-brand-default text-base-white px-2 py-0.5;
   @apply rounded-lg;
 }
+
+@media (max-width: 840px) {
+  .container .add {
+    @apply px-2;
+    @apply text-xl;
+  }
+}
+@media (max-width: 500px) {
+  .container .add {
+    @apply px-4;
+  }
+}
