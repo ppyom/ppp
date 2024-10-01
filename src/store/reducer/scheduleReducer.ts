@@ -60,7 +60,6 @@ const scheduleSlice = createSlice<
       .addCase(fetchHolidays.fulfilled, (state, action) => {
         state.status = 'succeed';
         const data = action.payload;
-        console.log(data);
         if (!data) {
           //
         } else {
