@@ -10,15 +10,21 @@ const experienceText = (code: ExperienceCode, options: ExperienceLevel) => {
   } else if (code === 1) {
     return '신입';
   } else {
+    let text = '';
     const { min, max } = options;
     if (max) {
-      return `경력 ${min}~${max}년`;
+      text = `경력 ${min}~${max}년`;
     } else {
-      return `경력 ${min}년`;
+      text = `경력 ${min}년`;
     }
+    if (code === 3) {
+      text = `신입/${text}`;
+    }
+    return text;
   }
 };
-const educationText = (code: EducationCode) => {
+const educationText = (codeStr: EducationCode) => {
+  const code = parseInt(codeStr);
   if (code === 0) {
     return '학력무관';
   }

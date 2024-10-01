@@ -1,31 +1,41 @@
 type ExperienceCode =
   | 0 // 무관
   | 1 // 신입
-  | 2; // 경력
+  | 2 // 경력
+  | 3; // 신입/경력
 interface AnyExperience {
   code: 0;
 }
 interface NewExperience {
   code: 1;
 }
-interface Experience {
+interface OldExperience {
   code: 2;
   min?: number;
   max?: number;
 }
-type ExperienceLevel = AnyExperience | NewExperience | Experience;
+interface NewOldExperience {
+  code: 3;
+  min?: number;
+  max?: number;
+}
+type ExperienceLevel =
+  | AnyExperience
+  | NewExperience
+  | OldExperience
+  | NewOldExperience;
 
 type EducationCode =
-  | 0 // 무관
-  | 1 // 고졸
-  | 2 // 초대졸
-  | 3 // 대졸
-  | 4 // 석사
-  | 5 // 박사
-  | 6 // 고졸↑
-  | 7 // 초대졸↑
-  | 8 // 대졸↑
-  | 9; // 석사↑
+  | '0' // 무관
+  | '1' // 고졸
+  | '2' // 초대졸
+  | '3' // 대졸
+  | '4' // 석사
+  | '5' // 박사
+  | '6' // 고졸↑
+  | '7' // 초대졸↑
+  | '8' // 대졸↑
+  | '9'; // 석사↑
 
 interface Position {
   title: string;
