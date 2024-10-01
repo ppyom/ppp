@@ -1,3 +1,4 @@
 .page {
   @apply flex justify-center items-center;
+  @apply bg-brand-light/30;
 }

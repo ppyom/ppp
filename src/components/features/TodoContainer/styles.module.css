@@ -1,0 +1,23 @@
+.container {
+  @apply max-w-[750px] w-3/4 h-3/4;
+  @apply p-4 pt-16;
+  @apply rounded-[4rem];
+  @apply bg-base-white shadow-[0_0_0_2rem] shadow-base-white/30;
+}
+.container h3 {
+  @apply text-4xl font-extrabold text-center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply w-11/12;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    @apply max-w-full w-full h-full;
+    @apply pt-8;
+    @apply bg-transparent shadow-none;
+  }
+}
