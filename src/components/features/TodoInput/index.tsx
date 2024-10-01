@@ -4,11 +4,13 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import Confirm from '@/components/common/Confirm';
 import useModal from '@/hooks/useModal.ts';
+import useToast from '@/hooks/useToast.ts';
 import { stringToRem } from '@/utils/string.ts';
 import styles from './styles.module.css';
 
 const TodoInput = () => {
   const { open } = useModal();
+  const { setToast } = useToast();
   const [value, setValue] = useState('');
   const [deadline, setDeadline] = useState('');
   const handleClockClick = () => {
@@ -23,6 +25,14 @@ const TodoInput = () => {
       },
     });
   };
+  const handleAddTodo = () => {
+    if (!value.trim()) {
+      setToast({ type: 'error', message: '내용을 입력해주세요.' });
+      return;
+    }
+    // TODO 저장
+    setToast({ type: 'success', message: '할 일이 등록되었어요.' });
+  };
   return (
     <div className={styles.container}>
       <Input
@@ -35,7 +45,12 @@ const TodoInput = () => {
           onClick: handleClockClick,
         }}
       />
-      <Button className={styles.add} Icon={FaPlus} active />
+      <Button
+        className={styles.add}
+        Icon={FaPlus}
+        active
+        onClick={handleAddTodo}
+      />
       {deadline && (
         <div
           style={{

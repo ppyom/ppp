@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { FaClock } from 'react-icons/fa6';
 import { FiCheck, FiMoreVertical } from 'react-icons/fi';
 import Button from '@/components/common/Button';
+import Confirm from '@/components/common/Confirm';
+import useModal from '@/hooks/useModal.ts';
+import useToast from '@/hooks/useToast.ts';
 import classNames from '@/utils/classNames.ts';
 import type { Todo } from '@/types/todo.ts';
 import styles from './styles.module.css';
@@ -9,6 +12,8 @@ import styles from './styles.module.css';
 interface Props extends Todo {}
 
 const TodoItem = ({ title, deadline, isCompleted }: Props) => {
+  const { open } = useModal();
+  const { setToast } = useToast();
   const [kebabOpen, setKebabOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const handleMenuOpen = () => {
@@ -16,12 +21,19 @@ const TodoItem = ({ title, deadline, isCompleted }: Props) => {
   };
   const handleComplete = () => {
     // TODO 완료 처리
+    setToast({ type: 'success', message: '할 일을 완료했어요.' });
   };
   const handleKebabMenuClick = (type: 'edit' | 'delete') => {
     if (type === 'edit') {
       setEditMode(true);
     } else {
-      // TODO 삭제 처리
+      open(Confirm, {
+        message: '삭제하시겠습니까?',
+        ok: () => {
+          // TODO 삭제 처리
+          setToast({ type: 'success', message: '삭제되었습니다.' });
+        },
+      });
     }
     setKebabOpen(false);
   };
@@ -55,7 +67,12 @@ const TodoItem = ({ title, deadline, isCompleted }: Props) => {
       )}
       <div className={styles.buttons}>
         {editMode ? (
-          <Button className={styles.ok} Icon={FiCheck} active />
+          <Button
+            className={styles.ok}
+            Icon={FiCheck}
+            active
+            onClick={handleEdit}
+          />
         ) : (
           <Button
             className={styles.menu}
