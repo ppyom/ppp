@@ -1,16 +1,16 @@
-import Input from '@/components/common/Input';
 import { useState } from 'react';
-import Button from '@/components/common/Button';
-import styles from './styles.module.css';
 import { FaClock, FaPlus } from 'react-icons/fa6';
-import { stringToRem } from '@/utils/string.ts';
-import useModal from '@/hooks/useModal.ts';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/Button';
 import Confirm from '@/components/common/Confirm';
+import useModal from '@/hooks/useModal.ts';
+import { stringToRem } from '@/utils/string.ts';
+import styles from './styles.module.css';
 
 const TodoInput = () => {
   const { open } = useModal();
   const [value, setValue] = useState('');
-  const [deadline, setDeadline] = useState('24.10.02');
+  const [deadline, setDeadline] = useState('');
   const handleClockClick = () => {
     // TODO Deadline Setting 모달 오픈
   };
