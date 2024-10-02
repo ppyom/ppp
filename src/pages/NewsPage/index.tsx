@@ -10,20 +10,31 @@ import type { Blog } from '@/types/blog.ts';
 import type { GitHub } from '@/types/github.ts';
 import styles from './styles.module.css';
 import BlogAPI from '@/services/BlogAPI.ts';
+import GitHubAPI from '@/services/GitHubAPI.ts';
 
 const NewsPage = () => {
   const [saramin, setSaramin] = useState<Saramin[]>([]);
   const [blog, setBlog] = useState<Blog[]>([]);
-  const [github] = useState<GitHub[]>([]);
+  const [github, setGitHub] = useState<GitHub[]>([]);
 
   useEffect(() => {
-    Promise.all<Awaited<{ job: Saramin[] } | { data: Blog[] }>>([
+    Promise.all<
+      Awaited<{ job: Saramin[] } | { data: Blog[] } | { data: GitHub[] }>
+    >([
       SaraminAPI.getJobSearch(),
       BlogAPI.getArticles(),
-    ]).then(([saramin, blog]: [{ job: Saramin[] }, { data: Blog[] }]) => {
-      setSaramin(saramin.job);
-      setBlog(blog.data);
-    });
+      GitHubAPI.getRepositories(),
+    ]).then(
+      ([saramin, blog, github]: [
+        { job: Saramin[] },
+        { data: Blog[] },
+        { data: GitHub[] },
+      ]) => {
+        setSaramin(saramin.job);
+        setBlog(blog.data);
+        setGitHub(github.data);
+      },
+    );
   }, []);
 
   return (
