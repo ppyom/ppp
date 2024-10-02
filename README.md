@@ -52,4 +52,9 @@ MBTI P인 프로그래머를 위한 플래너
 ## ▶️ 실행 방법
 
 1. `npm i`를 입력해 필요한 패키지를 설치합니다.
-2. `npm run dev`를 입력해 실행합니다.
+2. [서버](https://github.com/ppyom/ppp-server)를 실행합니다.
+3. `.env.local` 파일을 만들고 아래 내용을 입력합니다.
+   ```bash
+    VITE_SERVER_URL=# 2에서 실행시킨 서버 주소
+   ```
+4. `npm run dev`를 입력해 실행합니다.
