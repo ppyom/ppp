@@ -32,7 +32,7 @@
 }
 .bullet {
   @apply inline-block;
-  @apply size-3 mx-0.5;
+  @apply size-2 mx-0.5;
   @apply bg-brand-default/10 rounded-full;
 }
 .bullet.active {

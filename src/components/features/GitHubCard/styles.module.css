@@ -23,18 +23,30 @@
   @apply text-center text-base-white;
 }
 .title {
-  @apply text-lg font-bold;
+  @apply text-lg font-bold line-clamp-2;
 }
 .description {
   @apply mt-2;
-  @apply text-sm;
+  @apply text-sm line-clamp-3;
 }
 .card:hover {
   @apply bg-base-black;
 }
 
+.link {
+  @apply size-full;
+  @apply absolute top-0 left-0;
+  @apply text-transparent;
+}
+
 @media (max-width: 600px) {
   .card {
     @apply max-w-full w-full;
+  }
+  .title {
+    @apply text-base;
+  }
+  .description {
+    @apply text-xs;
   }
 }

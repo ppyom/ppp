@@ -20,7 +20,7 @@
   @apply overflow-auto;
 }
 .title {
-  @apply font-bold text-lg min-h-20;
+  @apply font-bold text-lg min-h-[5.5rem] line-clamp-3;
 }
 .info {
   @apply flex items-center gap-4;
@@ -39,10 +39,13 @@
 }
 
 .tags::-webkit-scrollbar {
-  @apply h-1;
+  @apply h-0;
 }
-.tags::-webkit-scrollbar-thumb {
-  @apply bg-brand-default/50;
+
+.link {
+  @apply size-full;
+  @apply absolute top-0 left-0;
+  @apply text-transparent;
 }
 
 @media (max-width: 600px) {

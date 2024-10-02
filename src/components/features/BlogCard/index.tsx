@@ -9,6 +9,7 @@ interface Props extends Blog {}
 const BlogCard = ({
   id,
   title,
+  url,
   cover_image,
   tag_list,
   published_at,
@@ -36,6 +37,7 @@ const BlogCard = ({
           {formatter('MMM DD, YYYY', published_at)}
         </span>
       </div>
+      <a className={styles.link} href={url || '#'} target="_blank" />
     </div>
   );
 };

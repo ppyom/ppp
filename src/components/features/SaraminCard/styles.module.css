@@ -4,6 +4,7 @@
   @apply max-w-[450px];
   @apply p-6;
   @apply bg-base-white border-[1px] border-neutral-300 rounded-2xl;
+  @apply relative;
   @apply duration-300;
 }
 
@@ -15,7 +16,7 @@
 }
 
 .title {
-  @apply font-bold text-lg;
+  @apply font-bold text-lg line-clamp-1;
 }
 .company {
   @apply text-neutral-600;
@@ -44,6 +45,12 @@
 }
 .card:hover {
   @apply bg-brand-default/5 border-brand-default;
+}
+
+.link {
+  @apply size-full;
+  @apply absolute top-0 left-0;
+  @apply text-transparent;
 }
 
 @media (max-width: 600px) {

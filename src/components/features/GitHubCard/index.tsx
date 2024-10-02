@@ -5,6 +5,7 @@ interface Props extends GitHub {}
 
 const GitHubCard = ({
   name,
+  html_url,
   description,
   owner: { avatar_url, login },
 }: Props) => {
@@ -20,6 +21,7 @@ const GitHubCard = ({
         <p className={styles.title}>{name}</p>
         {description && <p className={styles.description}>{description}</p>}
       </div>
+      <a className={styles.link} href={html_url || '#'} target="_blank" />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import {
 interface Props extends Saramin {}
 
 const SaraminCard = ({
+  url,
   position: {
     title,
     location: { name: locationName },
@@ -45,6 +46,7 @@ const SaraminCard = ({
             ? '채용시 마감'
             : formatter('~MM.DD(ddd)', parseInt(endDate) * 1000)}
       </div>
+      <a className={styles.link} href={url || '#'} target="_blank" />
     </div>
   );
 };
