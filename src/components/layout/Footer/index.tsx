@@ -1,15 +1,22 @@
 import { FaGithub, FaRegEnvelope } from 'react-icons/fa6';
+import useToast from '@/hooks/useToast.ts';
+import me from '@/constants/me.ts';
+import toast from '@/constants/toast.ts';
 import styles from './styles.module.css';
 
 const Footer = () => {
+  const { setToast } = useToast();
+  const handleCopyMail = () => {
+    navigator.clipboard.writeText(me.email).then();
+    setToast(toast.me.copyMail);
+  };
   return (
     <footer className={styles.footer}>
       <div className={styles.info}>
-        <a href="https://github.com/ppyom" target="_blank">
+        <a href={me.github} target="_blank">
           <FaGithub />
         </a>
-        <button>
-          {/* TODO 메일주소 복사 기능 추가 필요 */}
+        <button onClick={handleCopyMail}>
           <FaRegEnvelope />
         </button>
       </div>
