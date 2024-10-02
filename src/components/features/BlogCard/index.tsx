@@ -22,7 +22,7 @@ const BlogCard = ({
       </div>
       <div className={styles.tags}>
         {tag_list
-          .sort((a, b) => (namedTags.includes(a) ? -1 : 1))
+          .sort((tag) => (namedTags.includes(tag) ? -1 : 1))
           .map((t) => (
             <Badge key={`tag_${id}_${t}`} type={t} />
           ))}

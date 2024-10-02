@@ -1,12 +1,12 @@
 const namedTags = ['javascript', 'react', 'html', 'css'] as const;
-type Tags = (typeof namedTags)[number] | string;
+type Tag = (typeof namedTags)[number] | string;
 
 interface Blog {
   id: number;
   title: string;
   cover_image: string | null;
   url: string;
-  tag_list: Tags[];
+  tag_list: Tag[];
   published_at: string;
   user: {
     name: string;
@@ -15,4 +15,4 @@ interface Blog {
 }
 
 export { namedTags };
-export type { Blog, Tags };
+export type { Blog, Tag };

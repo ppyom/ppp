@@ -1,9 +1,9 @@
 import classNames from '@/utils/classNames.ts';
-import type { Tags } from '@/types/blog.ts';
+import type { Tag } from '@/types/blog.ts';
 import styles from './styles.module.css';
 
 interface Props {
-  type: Tags;
+  type: Tag;
 }
 
 const Badge = ({ type }: Props) => {
