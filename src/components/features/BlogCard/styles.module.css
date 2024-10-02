@@ -1,6 +1,6 @@
 .card {
   @apply border-2 border-red-500;
-  @apply max-w-[320px] p-4;
+  @apply w-[320px] p-4;
   @apply flex flex-col gap-2;
   @apply bg-base-white border-[1px] border-neutral-300 rounded-2xl;
   @apply duration-300;
@@ -50,6 +50,6 @@
 
 @media (max-width: 600px) {
   .card {
-    @apply max-w-full w-full;
+    @apply w-full;
   }
 }
