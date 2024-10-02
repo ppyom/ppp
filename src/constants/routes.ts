@@ -23,6 +23,6 @@ const routes = [
     Icon: IoTelescopeOutline,
     PageElement: NewsPage,
   },
-];
+] as const;
 
-export { routes };
+export default routes;

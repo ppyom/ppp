@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { routes } from '@/routes.ts';
+import routes from '@/constants/routes.ts';
 import classNames from '@/utils/classNames.ts';
 import styles from './styles.module.css';
 

@@ -4,7 +4,7 @@ import { ModalProvider } from '@/context/ModalContext.tsx';
 import { ToastProvider } from '@/context/ToastContext.tsx';
 import Sidebar from '@/components/layout/Sidebar';
 import MobileHeader from '@/components/layout/MobileHeader';
-import { routes } from '@/routes.ts';
+import routes from '@/constants/routes.ts';
 
 function App() {
   const { pathname } = useLocation();
