@@ -1,41 +1,18 @@
-import { useEffect, useState } from 'react';
-import SaraminAPI from '@/services/SaraminAPI.ts';
 import PageLayout from '@/components/layout/PageLayout';
 import NewsSection from '@/components/common/NewsSection';
 import SaraminCard from '@/components/features/SaraminCard';
 import BlogCard from '@/components/features/BlogCard';
 import GitHubCard from '@/components/features/GitHubCard';
+import useNewsData from '@/hooks/useNewsData.ts';
 import type { Saramin } from '@/types/saramin.ts';
 import type { Blog } from '@/types/blog.ts';
 import type { GitHub } from '@/types/github.ts';
 import styles from './styles.module.css';
-import BlogAPI from '@/services/BlogAPI.ts';
-import GitHubAPI from '@/services/GitHubAPI.ts';
 
 const NewsPage = () => {
-  const [saramin, setSaramin] = useState<Saramin[]>([]);
-  const [blog, setBlog] = useState<Blog[]>([]);
-  const [github, setGitHub] = useState<GitHub[]>([]);
-
-  useEffect(() => {
-    Promise.all<
-      Awaited<{ job: Saramin[] } | { data: Blog[] } | { data: GitHub[] }>
-    >([
-      SaraminAPI.getJobSearch(),
-      BlogAPI.getArticles(),
-      GitHubAPI.getRepositories(),
-    ]).then(
-      ([saramin, blog, github]: [
-        { job: Saramin[] },
-        { data: Blog[] },
-        { data: GitHub[] },
-      ]) => {
-        setSaramin(saramin.job);
-        setBlog(blog.data);
-        setGitHub(github.data);
-      },
-    );
-  }, []);
+  const {
+    data: { saramin, blog, github },
+  } = useNewsData();
 
   return (
     <PageLayout title="새로운 뉴스" hideTitle className={styles.page}>
