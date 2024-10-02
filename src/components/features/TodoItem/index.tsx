@@ -9,6 +9,8 @@ import useToast from '@/hooks/useToast.ts';
 import classNames from '@/utils/classNames.ts';
 import { makeDatetime } from '@/utils/datetimeFormatter.ts';
 import type { Todo } from '@/types/todo.ts';
+import toast from '@/constants/toast.ts';
+import confirm from '@/constants/confirm.ts';
 import styles from './styles.module.css';
 
 interface Props extends Todo {}
@@ -35,10 +37,7 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
     if (!editMode && !target.closest('button')) {
       const completed = !isCompleted;
       // TODO 완료 처리
-      setToast({
-        type: 'success',
-        message: completed ? '할 일을 완료했어요.' : '완료를 취소했어요.',
-      });
+      setToast(toast.todo.complete(completed));
     }
   };
   const handleKebabMenuClick = (type: 'edit' | 'delete') => {
@@ -46,10 +45,10 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
       setEditMode(true);
     } else {
       open(Confirm, {
-        message: '삭제하시겠습니까?',
+        message: confirm.common.remove,
         ok: () => {
           // TODO 삭제 처리
-          setToast({ type: 'success', message: '삭제되었습니다.' });
+          setToast(toast.common.remove);
         },
       });
     }

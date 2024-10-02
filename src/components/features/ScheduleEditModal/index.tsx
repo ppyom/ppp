@@ -16,6 +16,7 @@ import { dateFormatter, datetimeFormatter } from '@/utils/datetimeFormatter.ts';
 import type * as ModalType from '@/types/modal.ts';
 import type { Hour, Minute } from '@/types/time.ts';
 import type { Schedule } from '@/types/schedule.ts';
+import toast from '@/constants/toast.ts';
 import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
@@ -66,11 +67,11 @@ const ScheduleEditModal = ({ id, date, event }: Props) => {
   };
   const handleSave = () => {
     if (!schedule.title.trim()) {
-      setToast({ type: 'error', message: '일정 제목을 입력해주세요.' });
+      setToast(toast.schedule.inputTitle);
       return;
     }
     handleSaveSchedule({ ...schedule, hasTime: checked }, true);
-    setToast({ type: 'success', message: '저장되었습니다.' });
+    setToast(toast.common.save);
     close(id);
   };
 

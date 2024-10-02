@@ -8,6 +8,8 @@ import useToast from '@/hooks/useToast.ts';
 import useSchedule from '@/hooks/useSchedule.ts';
 import { dateFormatter, datetimeFormatter } from '@/utils/datetimeFormatter.ts';
 import type * as ModalType from '@/types/modal.ts';
+import toast from '@/constants/toast.ts';
+import confirm from '@/constants/confirm.ts';
 import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
@@ -34,9 +36,9 @@ const ScheduleDetailModal = ({ id, scheduleId }: Props) => {
   };
   const handleDelete = () => {
     open(Confirm, {
-      message: '삭제하시겠습니까?',
+      message: confirm.common.remove,
       ok: () => {
-        setToast({ type: 'success', message: '삭제되었습니다.' });
+        setToast(toast.common.remove);
         handleClose();
         handleRemoveSchedule();
       },

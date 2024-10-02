@@ -7,6 +7,8 @@ import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
 import { stringToRem } from '@/utils/string.ts';
+import toast from '@/constants/toast.ts';
+import confirm from '@/constants/confirm.ts';
 import styles from './styles.module.css';
 
 const TodoInput = () => {
@@ -24,7 +26,7 @@ const TodoInput = () => {
   };
   const handleDeadlineClick = () => {
     open(Confirm, {
-      message: '삭제하시겠습니까?',
+      message: confirm.common.remove,
       ok: () => {
         // TODO Deadline 삭제 구현 필요
         setDeadline('');
@@ -33,11 +35,11 @@ const TodoInput = () => {
   };
   const handleAddTodo = () => {
     if (!value.trim()) {
-      setToast({ type: 'error', message: '내용을 입력해주세요.' });
+      setToast(toast.todo.inputContent);
       return;
     }
     // TODO 저장
-    setToast({ type: 'success', message: '할 일이 등록되었어요.' });
+    setToast(toast.todo.created);
   };
   return (
     <div className={styles.container}>
