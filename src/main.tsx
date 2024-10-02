@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './store';
 import App from './App.tsx';
 import './index.css';
+import 'swiper/css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>

@@ -1,0 +1,10 @@
+.page {
+  @apply overflow-auto;
+}
+
+.page::-webkit-scrollbar {
+  @apply size-3;
+}
+.page::-webkit-scrollbar-thumb {
+  @apply bg-brand-default/30 rounded-full;
+}

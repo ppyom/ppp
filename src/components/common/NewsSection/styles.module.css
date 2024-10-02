@@ -1,0 +1,55 @@
+.section {
+  @apply mb-4;
+  @apply relative;
+}
+.section h3 {
+  @apply mb-2;
+  @apply text-2xl font-bold;
+}
+
+.slider {
+  @apply w-full;
+}
+
+.slider .slide {
+  @apply w-auto;
+}
+
+.navigation {
+  @apply flex items-center gap-2;
+  @apply absolute top-1 right-1;
+}
+.navigation .prev,
+.navigation .next {
+  @apply border-[1px] border-brand-dark;
+  @apply text-brand-dark;
+}
+
+.pagination {
+  @apply hidden;
+  @apply w-full py-2;
+  @apply items-center justify-center;
+}
+.bullet {
+  @apply inline-block;
+  @apply size-2 mx-0.5;
+  @apply bg-brand-default/10 rounded-full;
+}
+.bullet.active {
+  @apply bg-brand-default;
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    @apply hidden;
+  }
+  .pagination {
+    @apply flex;
+  }
+}
+
+/* className 생성 */
+.saramin,
+.blog,
+.github {
+}

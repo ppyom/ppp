@@ -1,0 +1,55 @@
+.card {
+  @apply border-2 border-red-500;
+  @apply max-w-[320px] p-4;
+  @apply flex flex-col gap-2;
+  @apply bg-base-white border-[1px] border-neutral-300 rounded-2xl;
+  @apply duration-300;
+}
+.card img {
+  @apply size-full object-cover;
+}
+.card > .img {
+  @apply rounded-3xl overflow-hidden;
+  @apply relative pt-[60%];
+}
+.card > .img img {
+  @apply absolute top-0 left-0;
+}
+.tags {
+  @apply flex gap-1;
+  @apply overflow-auto;
+}
+.title {
+  @apply font-bold text-lg min-h-[5.5rem] line-clamp-3;
+}
+.info {
+  @apply flex items-center gap-4;
+}
+.info .img {
+  @apply size-8 rounded-full overflow-hidden;
+}
+.username {
+  @apply text-sm text-neutral-500;
+}
+.date {
+  @apply text-xs text-neutral-400;
+}
+.card:hover {
+  @apply bg-brand-default/5 border-brand-default;
+}
+
+.tags::-webkit-scrollbar {
+  @apply h-0;
+}
+
+.link {
+  @apply size-full;
+  @apply absolute top-0 left-0;
+  @apply text-transparent;
+}
+
+@media (max-width: 600px) {
+  .card {
+    @apply max-w-full w-full;
+  }
+}

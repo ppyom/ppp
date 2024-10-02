@@ -1,0 +1,52 @@
+.card {
+  @apply max-w-[360px];
+  @apply flex items-center gap-4;
+  @apply p-4;
+  @apply bg-base-navy rounded-xl;
+  @apply duration-300;
+}
+.img {
+  @apply flex-[2];
+  @apply bg-base-black p-4;
+  @apply rounded-lg;
+  @apply relative;
+}
+.img img {
+  @apply size-full object-cover;
+}
+.img .avatar {
+  @apply absolute bottom-2 right-2;
+  @apply size-1/3 rounded-full overflow-hidden;
+}
+.repo {
+  @apply flex-[3];
+  @apply text-center text-base-white;
+}
+.title {
+  @apply text-lg font-bold line-clamp-2;
+}
+.description {
+  @apply mt-2;
+  @apply text-sm line-clamp-3;
+}
+.card:hover {
+  @apply bg-base-black;
+}
+
+.link {
+  @apply size-full;
+  @apply absolute top-0 left-0;
+  @apply text-transparent;
+}
+
+@media (max-width: 600px) {
+  .card {
+    @apply max-w-full w-full;
+  }
+  .title {
+    @apply text-base;
+  }
+  .description {
+    @apply text-xs;
+  }
+}

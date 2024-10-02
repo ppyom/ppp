@@ -13,6 +13,7 @@ export default {
         base: {
           white: '#ffffff',
           black: '#000000',
+          navy: '#0E2234',
         },
         service: {
           success: '#31D555',
