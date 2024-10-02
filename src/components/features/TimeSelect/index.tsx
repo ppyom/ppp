@@ -1,7 +1,7 @@
 import Select from '@/components/common/Select';
+import useTimeSelect from '@/hooks/useTimeSelect.ts';
 import { Hour, hours, Minute, minutes } from '@/types/time.ts';
 import styles from './styles.module.css';
-import useTimeSelect from '@/hooks/useTimeSelect.ts';
 
 interface Props {
   label: string;

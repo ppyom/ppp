@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Blog } from '@/types/blog.ts';
+import type { Blog } from '@/types/blog.ts';
 
 class BlogAPI {
   private static baseURL = `${import.meta.env.VITE_SERVER_URL}/blog`;

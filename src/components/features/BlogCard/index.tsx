@@ -1,4 +1,4 @@
-import Badge from 'components/features/Badge';
+import Badge from '@/components/features/Badge';
 import { formatter } from '@/utils/datetimeFormatter.ts';
 import { namedTags } from '@/types/blog.ts';
 import type { Blog } from '@/types/blog.ts';

@@ -1,7 +1,7 @@
 import { FaExclamationTriangle } from 'react-icons/fa';
-import useModal from '@/hooks/useModal.ts';
 import Modal from '@/components/layout/Modal';
 import Button from '@/components/common/Button';
+import useModal from '@/hooks/useModal.ts';
 import type * as ModalType from '@/types/modal.ts';
 import styles from './styles.module.css';
 

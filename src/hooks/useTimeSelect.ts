@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Hour, Minute } from '@/types/time.ts';
+import type { Hour, Minute } from '@/types/time.ts';
 
 const useTimeSelect = (defaultTime: string) => {
   const [hour, setHour] = useState<Hour>(defaultTime.split(':')[0]);

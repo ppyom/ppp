@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { GitHub } from '@/types/github.ts';
 import moment from 'moment';
+import axios from 'axios';
+import type { GitHub } from '@/types/github.ts';
 
 class GitHubAPI {
   private static baseURL = `${import.meta.env.VITE_SERVER_URL}/github`;

@@ -1,12 +1,12 @@
-import { ExperienceLevel, Saramin } from '@/types/saramin.ts';
 import { FiMapPin } from 'react-icons/fi';
-import { formatter } from '@/utils/datetimeFormatter.ts';
-import styles from './styles.module.css';
 import {
   educationText,
   experienceText,
   getLocationName,
 } from '@/utils/saramin.ts';
+import { formatter } from '@/utils/datetimeFormatter.ts';
+import type { ExperienceLevel, Saramin } from '@/types/saramin.ts';
+import styles from './styles.module.css';
 
 interface Props extends Saramin {}
 

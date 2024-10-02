@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { EventChangeArg, EventClickArg } from '@fullcalendar/core';
 import CalendarHeader from '@/components/features/CalendarHeader';
-import ScheduleEditModal from 'components/features/ScheduleEditModal';
+import ScheduleEditModal from '@/components/features/ScheduleEditModal';
 import ScheduleDetailModal from '@/components/features/ScheduleDetailModal';
 import useSchedule from '@/hooks/useSchedule.ts';
 import useModal from '@/hooks/useModal.ts';

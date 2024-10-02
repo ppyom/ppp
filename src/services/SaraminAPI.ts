@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Saramin } from '@/types/saramin.ts';
+import type { Saramin } from '@/types/saramin.ts';
 
 class SaraminAPI {
   private static baseURL = `${import.meta.env.VITE_SERVER_URL}/saramin`;

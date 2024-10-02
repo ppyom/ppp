@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import TodoInput from '@/components/features/TodoInput';
 import Checkbox from '@/components/common/Checkbox';
+import TodoInput from '@/components/features/TodoInput';
 import TodoItem from '@/components/features/TodoItem';
 import useCheckbox from '@/hooks/useCheckbox.ts';
 import type { Todo } from '@/types/todo.ts';
