@@ -6,9 +6,9 @@ interface Props {
   type: Tags;
 }
 
-const BlogTag = ({ type }: Props) => {
+const Badge = ({ type }: Props) => {
   return (
-    <div className={classNames(styles.tag, styles[type])}>
+    <div className={classNames(styles.badge, styles[type])}>
       {type === 'javascript'
         ? 'JavaScript'
         : type === 'react'
@@ -22,4 +22,4 @@ const BlogTag = ({ type }: Props) => {
   );
 };
 
-export default BlogTag;
+export default Badge;

@@ -1,17 +1,17 @@
-.tag {
+.badge {
   @apply px-2 py-1;
   @apply text-xs;
   @apply bg-brand-default text-base-white rounded-lg;
 }
-.tag.javascript {
+.badge.javascript {
   @apply bg-tags-javascript;
 }
-.tag.react {
+.badge.react {
   @apply bg-tags-react;
 }
-.tag.html {
+.badge.html {
   @apply bg-tags-html;
 }
-.tag.css {
+.badge.css {
   @apply bg-tags-css;
 }

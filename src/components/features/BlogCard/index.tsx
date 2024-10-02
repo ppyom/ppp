@@ -1,4 +1,4 @@
-import BlogTag from '@/components/features/BlogTag';
+import Badge from 'components/features/Badge';
 import { formatter } from '@/utils/datetimeFormatter.ts';
 import { namedTags } from '@/types/blog.ts';
 import type { Blog } from '@/types/blog.ts';
@@ -24,7 +24,7 @@ const BlogCard = ({
         {tag_list
           .sort((a, b) => (namedTags.includes(a) ? -1 : 1))
           .map((t) => (
-            <BlogTag key={`tag_${id}_${t}`} type={t} />
+            <Badge key={`tag_${id}_${t}`} type={t} />
           ))}
       </div>
       <p className={styles.title}>{title}</p>
