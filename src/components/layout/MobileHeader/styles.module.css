@@ -1,6 +1,6 @@
 .header {
   @apply hidden;
-  @apply relative;
+  @apply relative z-[999];
   @apply justify-center items-center;
   @apply py-8 bg-brand-white shadow-lg;
 }
