@@ -18,6 +18,7 @@ const TodoContainer = () => {
       <h3>ToDoList</h3>
       <TodoInput />
       <Checkbox
+        className={styles.checkbox}
         label="완료된 내역 포함"
         checked={checked}
         setChecked={setChecked}
