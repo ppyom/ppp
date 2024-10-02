@@ -1,5 +1,5 @@
 import PageLayout from '@/components/layout/PageLayout';
-import NewsSection from '@/components/common/NewsSection';
+import NewsSection from 'components/features/NewsSection';
 import SaraminCard from '@/components/features/SaraminCard';
 import BlogCard from '@/components/features/BlogCard';
 import GitHubCard from '@/components/features/GitHubCard';
