@@ -32,3 +32,9 @@
 .card:hover {
   @apply bg-base-black;
 }
+
+@media (max-width: 600px) {
+  .card {
+    @apply max-w-full w-full;
+  }
+}

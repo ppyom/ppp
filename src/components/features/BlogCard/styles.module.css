@@ -44,3 +44,9 @@
 .tags::-webkit-scrollbar-thumb {
   @apply bg-brand-default/50;
 }
+
+@media (max-width: 600px) {
+  .card {
+    @apply max-w-full w-full;
+  }
+}

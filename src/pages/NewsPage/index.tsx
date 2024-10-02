@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
+import NewsSection from '@/components/common/NewsSection';
 import SaraminCard from '@/components/features/SaraminCard';
 import BlogCard from '@/components/features/BlogCard';
 import GitHubCard from '@/components/features/GitHubCard';
 import type { Saramin } from '@/types/saramin.ts';
 import type { Blog } from '@/types/blog.ts';
 import type { GitHub } from '@/types/github.ts';
+import styles from './styles.module.css';
 
 const NewsPage = () => {
   const [saramin] = useState<Saramin[]>([
@@ -254,25 +256,25 @@ const NewsPage = () => {
     },
   ]);
   return (
-    <PageLayout title="새로운 뉴스" hideTitle>
-      <section>
-        <h3>어머, 이건 꼭 봐야돼! 채용 정보</h3>
-        {saramin.map((s) => (
-          <SaraminCard key={`saramin_${s.id}`} {...s} />
-        ))}
-      </section>
-      <section>
-        <h3>MZ세대를 홀린 인기 포스팅</h3>
-        {blog.map((b) => (
-          <BlogCard key={`blog_${b.id}`} {...b} />
-        ))}
-      </section>
-      <section>
-        <h3>매력적인 리포지토리</h3>
-        {github.map((g) => (
-          <GitHubCard key={`gh_${g.id}`} {...g} />
-        ))}
-      </section>
+    <PageLayout title="새로운 뉴스" hideTitle className={styles.page}>
+      <NewsSection<Saramin>
+        id="saramin"
+        title="어머, 이건 꼭 봐야돼! 채용 정보"
+        items={saramin}
+        Card={SaraminCard}
+      />
+      <NewsSection<Blog>
+        id="blog"
+        title="MZ세대를 홀린 인기 포스팅"
+        items={blog}
+        Card={BlogCard}
+      />
+      <NewsSection<GitHub>
+        id="github"
+        title="매력적인 리포지토리"
+        items={github}
+        Card={GitHubCard}
+      />
     </PageLayout>
   );
 };

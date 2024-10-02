@@ -45,3 +45,9 @@
 .card:hover {
   @apply bg-brand-default/5 border-brand-default;
 }
+
+@media (max-width: 600px) {
+  .card {
+    @apply max-w-full w-full;
+  }
+}
