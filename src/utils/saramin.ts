@@ -5,9 +5,9 @@ import {
 } from '@/types/saramin.ts';
 
 const experienceText = (code: ExperienceCode, options: ExperienceLevel) => {
-  if (code === 0) {
+  if (options.code === 0) {
     return '경력무관';
-  } else if (code === 1) {
+  } else if (options.code === 1) {
     return '신입';
   } else {
     let text = '';

@@ -1,20 +1,14 @@
 import { useDispatch } from 'react-redux';
-import { configureStore, ThunkDispatch } from '@reduxjs/toolkit';
-import scheduleReducer from '@/store/reducer/scheduleReducer.ts';
-import todoReducer from '@/store/reducer/todoReducer.ts';
+import { Action, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
+import rootReducer, { RootState } from '@/store/reducer';
 
 const store = configureStore({
-  reducer: {
-    schedule: scheduleReducer,
-    todo: todoReducer,
-  },
+  reducer: rootReducer,
 });
 
-type RootState = ReturnType<typeof store.getState>;
-type AppDispatch = typeof store.dispatch;
 const useAppDispatch = () =>
-  useDispatch<ThunkDispatch<RootState, undefined, AppDispatch>>();
+  useDispatch<ThunkDispatch<RootState, any, Action>>();
+
+export { useAppDispatch };
 
 export default store;
-export { useAppDispatch };
-export type { RootState, AppDispatch };

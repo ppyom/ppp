@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaClock } from 'react-icons/fa6';
 import { FiCheck, FiMoreVertical } from 'react-icons/fi';
 import Button from '@/components/common/Button';
@@ -34,13 +34,17 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
     setKebabOpen(true);
     document.addEventListener('click', handleKebabClose);
   };
-  const handleKebabClose = ({ target }) => {
+  const handleKebabClose = ({ target }: DocumentEventMap['click']) => {
     if (target instanceof HTMLElement && !target.closest(`.${styles.kebab}`)) {
       closeKebabMenu();
     }
   };
-  const handleComplete = ({ target }) => {
-    if (!editMode && !target.closest('button')) {
+  const handleComplete = ({ target }: React.MouseEvent<HTMLElement>) => {
+    if (
+      !editMode &&
+      target instanceof HTMLElement &&
+      !target.closest('button')
+    ) {
       const completed = !isCompleted;
       handleSaveTodo({ id, title, deadline, isCompleted: completed });
       setToast(toast.todo.complete(completed));

@@ -66,4 +66,11 @@ interface Saramin {
   };
 }
 
-export type { Saramin, ExperienceCode, ExperienceLevel, EducationCode };
+export type {
+  Saramin,
+  ExperienceCode,
+  ExperienceLevel,
+  EducationCode,
+  OldExperience,
+  NewOldExperience,
+};

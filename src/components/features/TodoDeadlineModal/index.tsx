@@ -25,7 +25,7 @@ interface Props extends ModalType.Modal {
 
 const TodoDeadlineModal = ({ id, deadline, onSave }: Props) => {
   const { close } = useModal();
-  const { checked, setChecked } = useCheckbox(deadline?.includes(' '));
+  const { checked, setChecked } = useCheckbox(!!deadline?.includes(' '));
   const { selected, updateDate } = useDatePicker(
     dateFormatter(deadline || undefined),
   );

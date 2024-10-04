@@ -6,16 +6,22 @@ import type { Saramin } from '@/types/saramin.ts';
 import type { Blog } from '@/types/blog.ts';
 import type { GitHub } from '@/types/github.ts';
 
-type FetchResult = [{ job: Saramin[] }, { data: Blog[] }, { data: GitHub[] }];
+type SaraminResult = { job: Saramin[] };
+type BlogResult = { data: Blog[] };
+type GitHubResult = { data: GitHub[] };
+type FetchResult = [SaraminResult, BlogResult, GitHubResult];
 
 const fetchNewsData = (): Promise<FetchResult> => {
-  return Promise.all<
-    Awaited<{ job: Saramin[] } | { data: Blog[] } | { data: GitHub[] }>
-  >([
+  const promises: [
+    Promise<SaraminResult>,
+    Promise<BlogResult>,
+    Promise<GitHubResult>,
+  ] = [
     SaraminAPI.getJobSearch(),
     BlogAPI.getArticles(),
     GitHubAPI.getRepositories(),
-  ]);
+  ];
+  return Promise.all(promises);
 };
 
 const useNewsData = () => {

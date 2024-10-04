@@ -1,4 +1,4 @@
-const namedTags = ['javascript', 'react', 'html', 'css'] as const;
+const namedTags = ['javascript', 'react', 'html', 'css'];
 type Tag = (typeof namedTags)[number] | string;
 
 interface Blog {

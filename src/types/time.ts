@@ -23,7 +23,7 @@ const hours = [
   '21',
   '22',
   '23',
-] as const;
+];
 const minutes = [
   '00',
   '01',
@@ -85,7 +85,7 @@ const minutes = [
   '57',
   '58',
   '59',
-] as const;
+];
 
 type Hour = (typeof hours)[number];
 type Minute = (typeof minutes)[number];

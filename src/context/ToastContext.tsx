@@ -1,20 +1,24 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import Toast from '@/components/common/Toast';
 import type * as ToastType from '@/types/toast.ts';
 
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
 // Toast를 전역에서 불러와 사용하기 위한 Context
 const ToastContext = createContext({
-  setToast: (_: Partial<ToastType.Toast>) => {},
+  setToast: (_: Omit<ToastType.Toast, 'id'>) => {},
 });
 
-const ToastProvider = ({ children }) => {
+const ToastProvider = ({ children }: ProviderProps) => {
   const [toastList, setToastList] = useState<ToastType.Toast[]>([]);
 
   const setToast = ({
     duration = 3000,
     message = '',
     type,
-  }: ToastType.Toast) => {
+  }: Omit<ToastType.Toast, 'id'>) => {
     const id = Date.now().toString();
     setToastList((prev) => [...prev, { id, duration, message, type }]);
     setTimeout(() => done(id), duration + 500);

@@ -1,7 +1,7 @@
 interface Toast {
   id: string;
   message: string;
-  duration: number;
+  duration?: number;
   type?: Type;
 }
 

@@ -1,6 +1,10 @@
 import React, { createContext, useState } from 'react';
 import type * as ModalType from '@/types/modal.ts';
 
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
 // Modal을 전역에서 불러와 사용하기 위한 Context
 const ModalContext = createContext({
   open: <T,>(_: React.ComponentType<T>, __: Omit<T, 'id'>) => {},
@@ -10,11 +14,12 @@ const ModalContext = createContext({
 interface ModalItem<T extends ModalType.Modal> {
   id: string;
   modal: React.ComponentType<T>;
-  props: T;
+  props: Omit<T, 'id'>;
 }
 
-const ModalProvider = ({ children }) => {
-  const [modals, setModals] = useState<ModalItem<ModalType.Modal>[]>([]);
+const ModalProvider = ({ children }: ProviderProps) => {
+  // TODO Modal Type 변경 필요
+  const [modals, setModals] = useState<ModalItem<any>[]>([]);
   const open = <T,>(modal: React.ComponentType<T>, props: Omit<T, 'id'>) => {
     const id = Date.now().toString();
     setModals((prev) => [...prev, { id, modal, props }]);
