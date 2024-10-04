@@ -66,7 +66,6 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
       deadline: deadline,
       onSave: (date) => {
         setEditedTodo((prev) => ({ ...prev, deadline: date }));
-        console.log(date);
       },
     });
   };

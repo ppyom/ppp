@@ -37,7 +37,6 @@ const TodoDeadlineModal = ({ id, deadline, onSave }: Props) => {
       checked ? datetimeFormatter(target) : dateFormatter(target),
     [checked],
   );
-  console.log(timeFormatter(deadline || undefined));
   const handleClose = () => {
     close(id);
   };
