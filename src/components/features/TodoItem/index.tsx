@@ -99,7 +99,7 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
         >
           <FaClock />
           {/* TODO 'YY.MM.DD HH:mm' 형식 사용 */}
-          <span>({editMode ? editedTodo.deadline : deadline})</span>
+          <span>{editMode ? editedTodo.deadline : deadline}</span>
         </p>
       )}
       <div className={styles.buttons}>
