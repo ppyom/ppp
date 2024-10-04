@@ -4,7 +4,7 @@ import type * as ToastType from '@/types/toast.ts';
 
 // Toast를 전역에서 불러와 사용하기 위한 Context
 const ToastContext = createContext({
-  setToast: (toast: Partial<ToastType.Toast>) => {},
+  setToast: (_: Partial<ToastType.Toast>) => {},
 });
 
 const ToastProvider = ({ children }) => {
