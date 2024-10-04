@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { FaClock, FaPlus } from 'react-icons/fa6';
+import { v4 as uuid } from 'uuid';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import Confirm from '@/components/common/Confirm';
 import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
+import useTodo from '@/hooks/useTodo.ts';
 import { stringToRem } from '@/utils/string.ts';
 import toast from '@/constants/toast.ts';
 import confirm from '@/constants/confirm.ts';
@@ -14,13 +16,14 @@ import styles from './styles.module.css';
 const TodoInput = () => {
   const { open } = useModal();
   const { setToast } = useToast();
+  const { handleSaveTodo } = useTodo();
   const [value, setValue] = useState('');
   const [deadline, setDeadline] = useState('');
   const handleClockClick = () => {
-    // TODO Deadline Setting 모달 오픈
     open(TodoDeadlineModal, {
-      onDateChange: (date) => {
-        console.log(date);
+      deadline,
+      onSave: (date) => {
+        setDeadline(date);
       },
     });
   };
@@ -28,7 +31,6 @@ const TodoInput = () => {
     open(Confirm, {
       message: confirm.common.remove,
       ok: () => {
-        // TODO Deadline 삭제 구현 필요
         setDeadline('');
       },
     });
@@ -38,8 +40,15 @@ const TodoInput = () => {
       setToast(toast.todo.inputContent);
       return;
     }
-    // TODO 저장
+    handleSaveTodo({
+      id: uuid(),
+      title: value,
+      deadline: deadline,
+      isCompleted: false,
+    });
     setToast(toast.todo.created);
+    setValue('');
+    setDeadline('');
   };
   return (
     <div className={styles.container}>

@@ -6,8 +6,8 @@ import Confirm from '@/components/common/Confirm';
 import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
+import useTodo from '@/hooks/useTodo.ts';
 import classNames from '@/utils/classNames.ts';
-import { makeDatetime } from '@/utils/datetimeFormatter.ts';
 import type { Todo } from '@/types/todo.ts';
 import toast from '@/constants/toast.ts';
 import confirm from '@/constants/confirm.ts';
@@ -18,8 +18,14 @@ interface Props extends Todo {}
 const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
   const { open } = useModal();
   const { setToast } = useToast();
+  const { handleSaveTodo, handleRemoveTodo } = useTodo(id);
   const [kebabOpen, setKebabOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editedTodo, setEditedTodo] = useState<Omit<Todo, 'id'>>({
+    title,
+    deadline,
+    isCompleted,
+  });
   const closeKebabMenu = () => {
     setKebabOpen(false);
     document.removeEventListener('click', handleKebabClose);
@@ -36,18 +42,19 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
   const handleComplete = ({ target }) => {
     if (!editMode && !target.closest('button')) {
       const completed = !isCompleted;
-      // TODO 완료 처리
+      handleSaveTodo({ id, title, deadline, isCompleted: completed });
       setToast(toast.todo.complete(completed));
     }
   };
   const handleKebabMenuClick = (type: 'edit' | 'delete') => {
     if (type === 'edit') {
       setEditMode(true);
+      setEditedTodo({ title, deadline, isCompleted });
     } else {
       open(Confirm, {
         message: confirm.common.remove,
         ok: () => {
-          // TODO 삭제 처리
+          handleRemoveTodo();
           setToast(toast.common.remove);
         },
       });
@@ -56,16 +63,17 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
   };
   const handleDeadlineChange = () => {
     open(TodoDeadlineModal, {
-      deadline: makeDatetime(deadline || ''),
-      onDateChange: (date) => {
-        // TODO Deadline 설정
+      deadline: deadline,
+      onSave: (date) => {
+        setEditedTodo((prev) => ({ ...prev, deadline: date }));
         console.log(date);
       },
     });
   };
   const handleEdit = () => {
-    // TODO 저장
+    handleSaveTodo({ id, ...editedTodo });
     setEditMode(false);
+    setToast(toast.common.save);
   };
   return (
     <div
@@ -75,18 +83,24 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
     >
       <div className={styles.title}>
         {editMode ? (
-          <input value={title} onChange={() => {}} />
+          <input
+            value={editedTodo.title}
+            onChange={({ target }) =>
+              setEditedTodo((prev) => ({ ...prev, title: target.value }))
+            }
+          />
         ) : (
           <p>{title}</p>
         )}
       </div>
-      {deadline && (
+      {(deadline || editMode) && (
         <p
           className={styles.deadline}
           onClick={editMode ? handleDeadlineChange : () => {}}
         >
           <FaClock />
-          <span>{deadline}</span>
+          {/* TODO 'YY.MM.DD HH:mm' 형식 사용 */}
+          <span>({editMode ? editedTodo.deadline : deadline})</span>
         </p>
       )}
       <div className={styles.buttons}>

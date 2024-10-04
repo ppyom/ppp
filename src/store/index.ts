@@ -1,10 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { configureStore, ThunkDispatch } from '@reduxjs/toolkit';
 import scheduleReducer from '@/store/reducer/scheduleReducer.ts';
+import todoReducer from '@/store/reducer/todoReducer.ts';
 
 const store = configureStore({
   reducer: {
     schedule: scheduleReducer,
+    todo: todoReducer,
   },
 });
 
