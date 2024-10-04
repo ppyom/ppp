@@ -6,6 +6,7 @@ import Confirm from '@/components/common/Confirm';
 import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
+import useTodo from '@/hooks/useTodo.ts';
 import classNames from '@/utils/classNames.ts';
 import { makeDatetime } from '@/utils/datetimeFormatter.ts';
 import type { Todo } from '@/types/todo.ts';
@@ -18,6 +19,7 @@ interface Props extends Todo {}
 const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
   const { open } = useModal();
   const { setToast } = useToast();
+  const { handleSaveTodo, handleRemoveTodo } = useTodo(id);
   const [kebabOpen, setKebabOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const closeKebabMenu = () => {
@@ -36,7 +38,7 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
   const handleComplete = ({ target }) => {
     if (!editMode && !target.closest('button')) {
       const completed = !isCompleted;
-      // TODO 완료 처리
+      handleSaveTodo({ id, title, deadline, isCompleted: completed });
       setToast(toast.todo.complete(completed));
     }
   };
@@ -47,7 +49,7 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
       open(Confirm, {
         message: confirm.common.remove,
         ok: () => {
-          // TODO 삭제 처리
+          handleRemoveTodo();
           setToast(toast.common.remove);
         },
       });
@@ -64,7 +66,7 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
     });
   };
   const handleEdit = () => {
-    // TODO 저장
+    // TODO 저장 => 마감기한 설정 이후 작성
     setEditMode(false);
   };
   return (
