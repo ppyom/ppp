@@ -13,9 +13,6 @@ const useSchedule = (id?: string) => {
   const dispatch = useDispatch();
 
   const getSchedule = (): Schedule | never => {
-    if (!id || !scheduleList[id]) {
-      throw new Error('올바른 아이디를 입력해주세요.');
-    }
     return scheduleList[id];
   };
   const handleSaveSchedule = (
