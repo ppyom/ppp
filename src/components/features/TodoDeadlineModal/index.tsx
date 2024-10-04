@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import moment, { MomentInput } from 'moment';
+import { useCallback, useState } from 'react';
+import { MomentInput } from 'moment';
 import { FiX } from 'react-icons/fi';
 import Modal from '@/components/layout/Modal';
 import Button from '@/components/common/Button';
@@ -19,39 +19,37 @@ import type { Hour, Minute } from '@/types/time.ts';
 import styles from './styles.module.css';
 
 interface Props extends ModalType.Modal {
-  onDateChange: (date: string) => void;
+  onSave: (date: string) => void;
   deadline?: string;
 }
 
-const TodoDeadlineModal = ({ id, deadline, onDateChange }: Props) => {
+const TodoDeadlineModal = ({ id, deadline, onSave }: Props) => {
   const { close } = useModal();
   const { checked, setChecked } = useCheckbox(deadline?.includes(' '));
-  const { selected, updateDate } = useDatePicker(dateFormatter(deadline));
+  const { selected, updateDate } = useDatePicker(
+    dateFormatter(deadline || undefined),
+  );
+  const [time, setTime] = useState<string>(
+    timeFormatter(deadline || undefined),
+  );
   const formatter = useCallback(
     (target: MomentInput) =>
       checked ? datetimeFormatter(target) : dateFormatter(target),
     [checked],
   );
+  console.log(timeFormatter(deadline || undefined));
   const handleClose = () => {
     close(id);
   };
   const handleSave = () => {
-    // TODO 마감기한 등록
+    onSave(formatter(`${selected} ${time}`));
+    handleClose();
   };
   const handleDateSelect = (date: string) => {
     updateDate(date);
-    onDateChange(
-      formatter(deadline ? `${date} ${deadline.split(' ')[1]}` : date),
-    );
   };
   const handleTimeSelect = (time: { hour: Hour; minute: Minute }) => {
-    onDateChange(
-      formatter(
-        moment(deadline)
-          .hour(parseInt(time.hour))
-          .minute(parseInt(time.minute)),
-      ),
-    );
+    setTime(`${time.hour}:${time.minute}`);
   };
   return (
     <Modal id={id} className={styles['todo--deadline']}>
@@ -64,7 +62,7 @@ const TodoDeadlineModal = ({ id, deadline, onDateChange }: Props) => {
         {checked && (
           <TimeSelect
             label="종료 시간"
-            defaultTime={timeFormatter(deadline)}
+            defaultTime={time}
             onTimeChange={handleTimeSelect}
           />
         )}

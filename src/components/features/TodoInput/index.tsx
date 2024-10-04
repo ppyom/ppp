@@ -20,10 +20,10 @@ const TodoInput = () => {
   const [value, setValue] = useState('');
   const [deadline, setDeadline] = useState('');
   const handleClockClick = () => {
-    // TODO Deadline Setting 모달 오픈
     open(TodoDeadlineModal, {
-      onDateChange: (date) => {
-        console.log(date);
+      deadline,
+      onSave: (date) => {
+        setDeadline(date);
       },
     });
   };
@@ -31,7 +31,6 @@ const TodoInput = () => {
     open(Confirm, {
       message: confirm.common.remove,
       ok: () => {
-        // TODO Deadline 삭제 구현 필요
         setDeadline('');
       },
     });
@@ -49,6 +48,7 @@ const TodoInput = () => {
     });
     setToast(toast.todo.created);
     setValue('');
+    setDeadline('');
   };
   return (
     <div className={styles.container}>
