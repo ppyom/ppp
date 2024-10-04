@@ -34,7 +34,7 @@
 
 MBTI P인 프로그래머를 위한 플래너
 
-[![Demo](https://img.shields.io/badge/Demo-ffffff?style=flat-square&color=21201f)](https://ppp.ppyom.com/) <!-- / [![Notion](https://img.shields.io/badge/프로젝트-ffffff?style=flat-square&logo=Notion&logoColor=000000&labelColor=ffffff&color=ffffff)](NOTION_LINK) -->
+[![Demo](https://img.shields.io/badge/Demo-ffffff?style=flat-square&color=21201f)](https://ppp.ppyom.com/) / [![Notion](https://img.shields.io/badge/프로젝트-ffffff?style=flat-square&logo=Notion&logoColor=000000&labelColor=ffffff&color=ffffff)](https://radical-devourer-8fb.notion.site/PPP-10c26845a53380baa76ac34cfb6123d1)
 
 ![React](https://img.shields.io/badge/React-ffffff?style=flat-square&logo=react&logoColor=ffffff&labelColor=61dafb&color=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-ffffff?style=flat-square&logo=typescript&logoColor=ffffff&labelColor=3178c6&color=3178c6)
