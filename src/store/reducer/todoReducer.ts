@@ -1,4 +1,4 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import TodoStorage from '@/services/TodoStorage.ts';
 import type { Todo } from '@/types/todo.ts';
 
@@ -10,17 +10,17 @@ const initialState: TodoState = {
   todoList: TodoStorage.getItems(),
 };
 
-const todoSlice = createSlice<TodoState, SliceCaseReducers<TodoState>>({
+const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    save: (state, action) => {
-      const todo: Todo = action.payload;
+    save: (state, action: PayloadAction<Todo>) => {
+      const todo = action.payload;
       state.todoList[todo.id] = todo;
       TodoStorage.saveToStorage(state.todoList);
     },
-    remove: (state, action) => {
-      const id: string = action.payload;
+    remove: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
       delete state.todoList[id];
       TodoStorage.saveToStorage(state.todoList);
     },
@@ -29,4 +29,5 @@ const todoSlice = createSlice<TodoState, SliceCaseReducers<TodoState>>({
 
 export const { save, remove } = todoSlice.actions;
 
+export type { TodoState };
 export default todoSlice.reducer;

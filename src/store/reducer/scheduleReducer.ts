@@ -1,14 +1,10 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  SliceCaseReducers,
-} from '@reduxjs/toolkit';
-import { RootState } from '@/store';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import ScheduleStorage from '@/services/ScheduleStorage.ts';
 import HolidayAPI from '@/services/HolidayAPI.ts';
 import { holidayToEvent } from '@/utils/schedule.ts';
-import type { HolidayResponse } from '@/types/holiday.ts';
 import type { Schedule } from '@/types/schedule.ts';
+import { HolidayResponse } from '@/types/holiday.ts';
+import { RootState } from '@/store/reducer';
 
 interface ScheduleState {
   status: 'idle' | 'loading' | 'succeed' | 'failed';
@@ -23,7 +19,7 @@ const initialState: ScheduleState = {
 const fetchHolidays = createAsyncThunk<
   HolidayResponse,
   { year: string },
-  { state: RootState }
+  { state: RootState; rejectValue: string }
 >('schedule/fetchHolidays', async ({ year }, thunkAPI) => {
   if (
     !Object.keys(thunkAPI.getState().schedule.scheduleList).includes(
@@ -32,34 +28,32 @@ const fetchHolidays = createAsyncThunk<
   ) {
     return await HolidayAPI.getHolidays(year);
   }
+  return thunkAPI.rejectWithValue('');
 });
 
-const scheduleSlice = createSlice<
-  ScheduleState,
-  SliceCaseReducers<ScheduleState>
->({
+const scheduleSlice = createSlice({
   name: 'schedule',
   initialState,
   reducers: {
-    save: (state, action) => {
-      const event: Schedule = action.payload;
+    save: (state, action: PayloadAction<Schedule>) => {
+      const event = action.payload;
       state.scheduleList[event.id] = event;
       ScheduleStorage.saveToStorage(state.scheduleList);
     },
-    remove: (state, action) => {
-      const id: string = action.payload;
+    remove: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
       delete state.scheduleList[id];
       ScheduleStorage.saveToStorage(state.scheduleList);
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHolidays.pending, (state) => {
+      .addCase(fetchHolidays.pending, (state: ScheduleState) => {
         state.status = 'loading';
       })
-      .addCase(fetchHolidays.fulfilled, (state, action) => {
+      .addCase(fetchHolidays.fulfilled, (state: ScheduleState, action) => {
         state.status = 'succeed';
-        const data = action.payload;
+        const data: HolidayResponse = action.payload;
         if (!data) {
           //
         } else {
@@ -75,7 +69,7 @@ const scheduleSlice = createSlice<
           ScheduleStorage.saveToStorage(state.scheduleList);
         }
       })
-      .addCase(fetchHolidays.rejected, (state) => {
+      .addCase(fetchHolidays.rejected, (state: ScheduleState) => {
         state.status = 'failed';
       });
   },
@@ -84,4 +78,5 @@ const scheduleSlice = createSlice<
 const { save, remove } = scheduleSlice.actions;
 
 export { save, remove, fetchHolidays };
+export type { ScheduleState };
 export default scheduleSlice.reducer;

@@ -11,10 +11,17 @@ interface Props {
 }
 
 const TimeSelect = ({ label, onTimeChange, defaultTime }: Props) => {
+  const [hourText, minuteText] = defaultTime
+    ? defaultTime.split(':')
+    : ['00', '00'];
   const { hour, setHour, minute, setMinute, makeOption } = useTimeSelect(
-    defaultTime || '00:00',
+    hours.includes(hourText) ? hourText : '00',
+    minutes.includes(minuteText) ? minuteText : '00',
   );
-  const handleTimeChange = <T,>(type: 'hour' | 'minute', option: T) => {
+  const handleTimeChange = <T extends Hour | Minute>(
+    type: 'hour' | 'minute',
+    option: T,
+  ) => {
     type === 'hour' ? setHour(option) : setMinute(option);
     onTimeChange({
       hour,

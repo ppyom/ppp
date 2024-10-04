@@ -4,6 +4,7 @@ import { Schedule } from '@/types/schedule.ts';
 import { Holiday } from '@/types/holiday.ts';
 import { EventImpl } from '@fullcalendar/core/internal';
 import styles from '@/components/features/Calendar/styles.module.css';
+import classNames from '@/utils/classNames.ts';
 
 const eventToEventInput = (event: Schedule): EventInput => {
   return {
@@ -12,15 +13,15 @@ const eventToEventInput = (event: Schedule): EventInput => {
     start: event.start,
     end: event.end,
     editable: !event.isHoliday,
-    classNames: [event.isHoliday && styles.holiday],
+    classNames: classNames(event.isHoliday && styles.holiday),
   };
 };
 const eventInputToEvent = <T extends EventInput | EventImpl>(
   event: T,
 ): Schedule => {
   return {
-    id: event.id,
-    title: event.title,
+    id: event.id || '',
+    title: event.title || '',
     start: event.startStr,
     end: event.endStr,
     hasTime: event.startStr.includes('T'),

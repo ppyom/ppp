@@ -11,8 +11,12 @@ interface Props extends ModalType.Modal {
 
 // 모달 기본 베이스
 const Modal = ({ id, children, className = '', onBgClick }: Props) => {
-  const handleBgClick = ({ target }) => {
-    if (onBgClick && target.matches(`#m_${id}`)) {
+  const handleBgClick = ({ target }: React.MouseEvent<HTMLElement>) => {
+    if (
+      onBgClick &&
+      target instanceof HTMLElement &&
+      target.matches(`#m_${id}`)
+    ) {
       onBgClick();
     }
   };

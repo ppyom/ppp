@@ -1,11 +1,9 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { NavigationOptions, PaginationOptions } from 'swiper/types';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Button from '@/components/common/Button';
-import SaraminCard from '@/components/features/SaraminCard';
-import BlogCard from '@/components/features/BlogCard';
-import GitHubCard from '@/components/features/GitHubCard';
 import classNames from '@/utils/classNames.ts';
 import type { Saramin } from '@/types/saramin.ts';
 import type { Blog } from '@/types/blog.ts';
@@ -16,10 +14,15 @@ interface Props<T extends Saramin | Blog | GitHub> {
   id: string;
   title: string;
   items: T[];
-  Card: typeof SaraminCard | typeof BlogCard | typeof GitHubCard;
+  Card: React.ComponentType<T>;
 }
 
-const NewsSection = <T,>({ id, title, items, Card }: Props<T>) => {
+const NewsSection = <T extends Saramin | Blog | GitHub>({
+  id,
+  title,
+  items,
+  Card,
+}: Props<T>) => {
   return (
     <section className={styles.section}>
       <h3>{title}</h3>
