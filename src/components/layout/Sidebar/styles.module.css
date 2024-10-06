@@ -20,4 +20,7 @@
   .sidebar.active {
     @apply right-0;
   }
+  body:has(.sidebar.active) main {
+    @apply pointer-events-none;
+  }
 }
