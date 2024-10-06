@@ -12,7 +12,7 @@ const useSchedule = (id?: string) => {
   );
   const dispatch = useDispatch();
 
-  const getSchedule = (): Schedule | never => {
+  const getSchedule = (): Schedule | undefined => {
     return scheduleList[id];
   };
   const handleSaveSchedule = (
