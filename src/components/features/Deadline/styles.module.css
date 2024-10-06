@@ -1,0 +1,11 @@
+.deadline {
+  @apply flex items-center gap-1;
+  @apply text-sm font-medium;
+  @apply text-brand-light;
+}
+
+.date {
+}
+.time {
+  @apply text-brand-default;
+}

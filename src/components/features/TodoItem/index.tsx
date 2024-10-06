@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { FaClock } from 'react-icons/fa6';
 import { FiCheck, FiMoreVertical } from 'react-icons/fi';
 import Button from '@/components/common/Button';
 import Confirm from '@/components/common/Confirm';
+import Deadline from '@/components/features/Deadline';
 import TodoDeadlineModal from '@/components/features/TodoDeadlineModal';
 import useModal from '@/hooks/useModal.ts';
 import useToast from '@/hooks/useToast.ts';
@@ -97,14 +97,11 @@ const TodoItem = ({ id, title, deadline, isCompleted }: Props) => {
         )}
       </div>
       {(deadline || editMode) && (
-        <p
-          className={styles.deadline}
-          onClick={editMode ? handleDeadlineChange : () => {}}
-        >
-          <FaClock />
-          {/* TODO 'YY.MM.DD HH:mm' 형식 사용 */}
-          <span>{editMode ? editedTodo.deadline : deadline}</span>
-        </p>
+        <Deadline
+          deadline={(editMode ? editedTodo.deadline : deadline) || ''}
+          editMode={editMode}
+          onDeadlineClick={handleDeadlineChange}
+        />
       )}
       <div className={styles.buttons}>
         {editMode ? (

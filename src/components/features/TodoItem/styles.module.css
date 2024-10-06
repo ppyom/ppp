@@ -11,11 +11,6 @@
 .title {
   @apply font-bold text-lg;
 }
-.deadline {
-  @apply flex items-center gap-1;
-  @apply text-sm font-medium;
-  @apply text-brand-light;
-}
 .buttons {
   @apply absolute top-1/2 -translate-y-1/2 right-3;
 }
