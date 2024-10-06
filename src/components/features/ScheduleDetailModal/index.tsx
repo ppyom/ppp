@@ -11,6 +11,7 @@ import type * as ModalType from '@/types/modal.ts';
 import toast from '@/constants/toast.ts';
 import confirm from '@/constants/confirm.ts';
 import styles from './styles.module.css';
+import { Schedule } from '@/types/schedule.ts';
 
 interface Props extends ModalType.Modal {
   scheduleId: string;
@@ -18,7 +19,11 @@ interface Props extends ModalType.Modal {
 
 const ScheduleDetailModal = ({ id, scheduleId }: Props) => {
   const { getSchedule, handleRemoveSchedule } = useSchedule(scheduleId);
-  const schedule = getSchedule() || {};
+  const schedule: Schedule | undefined = getSchedule();
+
+  if (!schedule) {
+    return <></>;
+  }
 
   const { setToast } = useToast();
   const { open, close } = useModal();

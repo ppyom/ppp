@@ -13,7 +13,7 @@ const useSchedule = (id?: string) => {
   const dispatch = useDispatch();
 
   const getSchedule = (): Schedule | undefined => {
-    return scheduleList[id];
+    return id ? scheduleList[id] : undefined;
   };
   const handleSaveSchedule = (
     event: Schedule | EventInput | EventImpl,
