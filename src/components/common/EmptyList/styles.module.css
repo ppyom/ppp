@@ -1,0 +1,8 @@
+.empty {
+  @apply min-h-60;
+  @apply flex flex-col items-center justify-center gap-4;
+  @apply text-neutral-400/70;
+}
+.empty svg {
+  @apply text-5xl;
+}
