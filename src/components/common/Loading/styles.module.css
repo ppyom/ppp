@@ -1,0 +1,13 @@
+.loading {
+  @apply fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+}
+
+.loading circle {
+  @apply animate-spin origin-center;
+  @apply stroke-brand-default fill-none;
+  @apply stroke-2;
+}
+
+body:has(.loading) {
+  @apply pointer-events-none;
+}
