@@ -39,6 +39,14 @@ main {
   @apply bg-white rounded-xl;
 }
 
+/* Skeleton */
+.skeleton {
+  @apply pointer-events-none;
+}
+.skeleton > * {
+  @apply animate-pulse;
+}
+
 @media (max-width: 500px) {
   #root {
     @apply flex-col;
