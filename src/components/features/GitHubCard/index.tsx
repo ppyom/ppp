@@ -1,5 +1,6 @@
 import type { GitHub } from '@/types/github.ts';
 import styles from './styles.module.css';
+import classNames from '@/utils/classNames.ts';
 
 interface Props extends GitHub {}
 
@@ -26,4 +27,21 @@ const GitHubCard = ({
   );
 };
 
-export default GitHubCard;
+const Skeleton = () => {
+  return (
+    <div className={classNames(styles.card, 'skeleton')}>
+      <div className={styles.img}>
+        <img src="/images/github_logo.png" alt="gh logo" />
+        <div className={styles.avatar}></div>
+      </div>
+      <div className={styles.repo}>
+        <p className={styles.title}></p>
+        <p className={styles.description}></p>
+      </div>
+    </div>
+  );
+};
+
+export default Object.assign(GitHubCard, {
+  Skeleton,
+});
