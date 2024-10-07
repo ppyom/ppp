@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { NavigationOptions, PaginationOptions } from 'swiper/types';
@@ -23,6 +23,13 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
   items,
   Card,
 }: Props<T>) => {
+  const progressRef = useRef<SVGSVGElement | null>(null);
+  const onAutoplayTimeLeft = (_, timeLeft: number, percentage: number) => {
+    progressRef.current?.style.setProperty(
+      '--progress',
+      (1 - percentage).toString(),
+    );
+  };
   return (
     <section className={styles.section}>
       <h3>{title}</h3>
@@ -46,6 +53,11 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
             el: `.${styles[id]} ~ .${styles.pagination}`,
           } as PaginationOptions
         }
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
         modules={[Autoplay, Pagination, Navigation]}
         className={classNames(styles.slider, styles[id])}
         breakpoints={{
@@ -72,6 +84,11 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
         <Button className={styles.next} Icon={FiChevronRight} />
       </div>
       <div className={styles.pagination}></div>
+      <div className={styles.progress} slot="container-end">
+        <svg viewBox="0 0 48 48" ref={progressRef}>
+          <circle cx="24" cy="24" r="20" />
+        </svg>
+      </div>
     </section>
   );
 };

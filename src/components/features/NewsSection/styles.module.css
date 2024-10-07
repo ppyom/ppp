@@ -38,12 +38,29 @@
 .bullet.active {
   @apply bg-brand-default;
 }
+.progress {
+  @apply absolute right-4 bottom-4 z-10;
+  @apply size-12;
+  @apply hidden items-center justify-center;
+}
+.progress svg {
+  --progress: 0;
+  stroke-dashoffset: calc(8rem * (1 - var(--progress)));
+  stroke-dasharray: 8rem;
+  @apply absolute left-0 top-0 z-10;
+  @apply size-full;
+  @apply fill-none stroke-[5px] stroke-brand-default;
+  @apply -rotate-90;
+}
 
 @media (max-width: 600px) {
   .navigation {
     @apply hidden;
   }
   .pagination {
+    @apply flex;
+  }
+  .progress {
     @apply flex;
   }
 }
