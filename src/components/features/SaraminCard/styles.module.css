@@ -53,6 +53,27 @@
   @apply text-transparent;
 }
 
+/* Skeleton */
+.card[class*="skeleton"] {
+  @apply gap-4;
+}
+.card[class*="skeleton"] .title,
+.card[class*="skeleton"] .company,
+.card[class*="skeleton"] .info span,
+.card[class*="skeleton"] .end {
+  @apply bg-neutral-300 rounded-full h-4;
+  @apply text-transparent;
+}
+.card[class*="skeleton"] .company {
+  @apply w-32;
+}
+.card[class*="skeleton"] .info span {
+  @apply inline-block w-12 h-3;
+}
+.card[class*="skeleton"] .end {
+  @apply w-14 h-3;
+}
+
 @media (max-width: 600px) {
   .card {
     @apply max-w-full w-full;
