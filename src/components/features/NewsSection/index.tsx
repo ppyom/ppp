@@ -24,12 +24,6 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
   Card,
 }: Props<T>) => {
   const progressRef = useRef<SVGSVGElement | null>(null);
-  const onAutoplayTimeLeft = (_, timeLeft: number, percentage: number) => {
-    progressRef.current?.style.setProperty(
-      '--progress',
-      (1 - percentage).toString(),
-    );
-  };
   return (
     <section className={styles.section}>
       <h3>{title}</h3>
@@ -57,7 +51,12 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
           delay: 5000,
           disableOnInteraction: false,
         }}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        onAutoplayTimeLeft={(_, __, percentage) => {
+          progressRef.current?.style.setProperty(
+            '--progress',
+            (1 - percentage).toString(),
+          );
+        }}
         modules={[Autoplay, Pagination, Navigation]}
         className={classNames(styles.slider, styles[id])}
         breakpoints={{
