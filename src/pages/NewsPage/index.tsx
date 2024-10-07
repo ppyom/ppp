@@ -12,6 +12,7 @@ import styles from './styles.module.css';
 const NewsPage = () => {
   const {
     data: { saramin, blog, github },
+    isLoading,
   } = useNewsData();
 
   return (
@@ -21,18 +22,21 @@ const NewsPage = () => {
         title="어머, 이건 꼭 봐야돼! 채용 정보"
         items={saramin}
         Card={SaraminCard}
+        isLoading={isLoading}
       />
       <NewsSection<Blog>
         id="blog"
         title="MZ세대를 홀린 인기 포스팅"
         items={blog}
         Card={BlogCard}
+        isLoading={isLoading}
       />
       <NewsSection<GitHub>
         id="github"
         title="매력적인 리포지토리"
         items={github}
         Card={GitHubCard}
+        isLoading={isLoading}
       />
     </PageLayout>
   );

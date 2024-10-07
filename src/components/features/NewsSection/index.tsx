@@ -14,7 +14,8 @@ interface Props<T extends Saramin | Blog | GitHub> {
   id: string;
   title: string;
   items: T[];
-  Card: React.ComponentType<T>;
+  Card: React.ComponentType<T> & { Skeleton: React.ComponentType };
+  isLoading: boolean;
 }
 
 const NewsSection = <T extends Saramin | Blog | GitHub>({
@@ -22,6 +23,7 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
   title,
   items,
   Card,
+  isLoading,
 }: Props<T>) => {
   const progressRef = useRef<SVGSVGElement | null>(null);
   return (
@@ -72,11 +74,20 @@ const NewsSection = <T extends Saramin | Blog | GitHub>({
           },
         }}
       >
-        {items.map((item) => (
-          <SwiperSlide key={`${id}_slide_${item.id}`} className={styles.slide}>
-            <Card {...item} />
-          </SwiperSlide>
-        ))}
+        {isLoading
+          ? Array.from({ length: 10 }).map((_, idx) => (
+              <SwiperSlide key={`${id}_sk_${idx}`} className={styles.slide}>
+                <Card.Skeleton />
+              </SwiperSlide>
+            ))
+          : items.map((item) => (
+              <SwiperSlide
+                key={`${id}_slide_${item.id}`}
+                className={styles.slide}
+              >
+                <Card {...item} />
+              </SwiperSlide>
+            ))}
       </Swiper>
       <div className={styles.navigation}>
         <Button className={styles.prev} Icon={FiChevronLeft} />
