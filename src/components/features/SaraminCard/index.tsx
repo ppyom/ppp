@@ -7,6 +7,7 @@ import {
 import { formatter } from '@/utils/datetimeFormatter.ts';
 import type { ExperienceLevel, Saramin } from '@/types/saramin.ts';
 import styles from './styles.module.css';
+import classNames from '@/utils/classNames.ts';
 
 interface Props extends Saramin {}
 
@@ -51,4 +52,25 @@ const SaraminCard = ({
   );
 };
 
-export default SaraminCard;
+const Skeleton = () => {
+  return (
+    <div className={classNames(styles.card, 'skeleton')}>
+      <div className={styles.img}>
+        <img src="/images/saramin_logo.png" alt="saramin skeleton" />
+      </div>
+      <p className={styles.title}>Title</p>
+      <p className={styles.company}>Company</p>
+      <p className={styles.info}>
+        <FiMapPin />
+        <span className={styles.location}></span>
+        <span className={styles.experience}></span>
+        <span></span>
+      </p>
+      <div className={styles.end}></div>
+    </div>
+  );
+};
+
+export default Object.assign(SaraminCard, {
+  Skeleton,
+});

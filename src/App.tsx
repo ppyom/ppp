@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ModalProvider } from '@/context/ModalContext.tsx';
 import { ToastProvider } from '@/context/ToastContext.tsx';
+import { LoadingProvider } from '@/context/LoadingContext.tsx';
 import Sidebar from '@/components/layout/Sidebar';
 import MobileHeader from '@/components/layout/MobileHeader';
 import routes from '@/constants/routes.ts';
@@ -30,21 +31,23 @@ function App() {
   }, [pathname]);
 
   return (
-    <ToastProvider>
-      <ModalProvider>
-        <MobileHeader open={sidebarOpen} />
-        <Sidebar isOpen={openSidebar} close={sidebarClose} />
-        <Routes>
-          {routes.map(({ path, PageElement }) => (
-            <Route
-              key={`route_${path}`}
-              path={path}
-              element={<PageElement />}
-            />
-          ))}
-        </Routes>
-      </ModalProvider>
-    </ToastProvider>
+    <LoadingProvider>
+      <ToastProvider>
+        <ModalProvider>
+          <MobileHeader open={sidebarOpen} />
+          <Sidebar isOpen={openSidebar} close={sidebarClose} />
+          <Routes>
+            {routes.map(({ path, PageElement }) => (
+              <Route
+                key={`route_${path}`}
+                path={path}
+                element={<PageElement />}
+              />
+            ))}
+          </Routes>
+        </ModalProvider>
+      </ToastProvider>
+    </LoadingProvider>
   );
 }
 

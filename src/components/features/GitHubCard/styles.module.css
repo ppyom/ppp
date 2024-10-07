@@ -39,6 +39,27 @@
   @apply text-transparent;
 }
 
+/* Skeleton */
+.card[class*="skeleton"] .avatar,
+.card[class*="skeleton"] .title,
+.card[class*="skeleton"] .description {
+  @apply bg-neutral-300;
+  @apply text-transparent;
+}
+.card[class*="skeleton"] .title,
+.card[class*="skeleton"] .description {
+  @apply rounded-full;
+}
+.card[class*="skeleton"] .repo {
+  @apply flex flex-col gap-4;
+}
+.card[class*="skeleton"] .title {
+  @apply h-4;
+}
+.card[class*="skeleton"] .description {
+  @apply self-center w-24 h-3;
+}
+
 @media (max-width: 600px) {
   .card {
     @apply max-w-full w-full;

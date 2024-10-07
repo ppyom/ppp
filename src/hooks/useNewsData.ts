@@ -25,7 +25,7 @@ const fetchNewsData = (): Promise<FetchResult> => {
 };
 
 const useNewsData = () => {
-  const { data } = useQuery<FetchResult, undefined, FetchResult>({
+  const { data, isLoading } = useQuery<FetchResult, undefined, FetchResult>({
     queryKey: ['newsData'],
     queryFn: fetchNewsData,
     staleTime: 60 * 60 * 24 * 1000,
@@ -37,6 +37,7 @@ const useNewsData = () => {
       blog: data ? data[1].data : [],
       github: data ? data[2].data : [],
     },
+    isLoading,
   };
 };
 

@@ -48,6 +48,32 @@
   @apply text-transparent;
 }
 
+/* Skeleton */
+.card[class*="skeleton"] .img,
+.card[class*="skeleton"] .badge,
+.card[class*="skeleton"] .title p,
+.card[class*="skeleton"] .username,
+.card[class*="skeleton"] .date {
+  @apply bg-neutral-300;
+  @apply text-transparent;
+}
+.card[class*="skeleton"] .badge,
+.card[class*="skeleton"] .title p,
+.card[class*="skeleton"] .username,
+.card[class*="skeleton"] .date {
+  @apply rounded-full;
+}
+.card[class*="skeleton"] .title {
+  @apply space-y-2;
+}
+.card[class*="skeleton"] .title > * {
+  @apply h-4;
+}
+.card[class*="skeleton"] .badge,
+.card[class*="skeleton"] .title > p:nth-of-type(3) {
+  @apply w-14 h-4;
+}
+
 @media (max-width: 600px) {
   .card {
     @apply w-full;

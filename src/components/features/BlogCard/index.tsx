@@ -1,5 +1,6 @@
 import Badge from '@/components/features/Badge';
 import { formatter } from '@/utils/datetimeFormatter.ts';
+import classNames from '@/utils/classNames.ts';
 import { namedTags } from '@/types/blog.ts';
 import type { Blog } from '@/types/blog.ts';
 import styles from './styles.module.css';
@@ -42,4 +43,29 @@ const BlogCard = ({
   );
 };
 
-export default BlogCard;
+const Skeleton = () => {
+  return (
+    <div className={classNames(styles.card, 'skeleton')}>
+      <div className={styles.img}></div>
+      <div className={styles.tags}>
+        <div className={styles.badge}></div>
+        <div className={styles.badge}></div>
+        <div className={styles.badge}></div>
+      </div>
+      <div className={styles.title}>
+        <p />
+        <p />
+        <p />
+      </div>
+      <div className={styles.info}>
+        <div className={styles.img}></div>
+        <span className={styles.username}>Username</span>
+        <span className={styles.date}>{formatter('MMM DD, YYYY')}</span>
+      </div>
+    </div>
+  );
+};
+
+export default Object.assign(BlogCard, {
+  Skeleton,
+});
